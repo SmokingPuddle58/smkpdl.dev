@@ -1,9 +1,19 @@
 ---
 import TopBar from '../components/TopBar.astro';
+import { Font } from "astro:assets";
 ---
+<head>
+    <Font cssVariable="--font-huninn" />
+</head>
 
 Hi! This is SmokingPuddle58. Greetings from Hong Kong :D.
 
 I am a [You flip the card] :D
 
 <TopBar />
+
+<style>
+    body {
+        font-family: 'Huninn', sans-serif;
+    }
+</style>
