@@ -1,4 +1,12 @@
 ---
+import nav from '../data/nav.json';
 ---
 
 
+{
+    nav.map((item) => (
+        <a href={item.path} class="nav-link">
+            {item.label}
+        </a>
+    ))
+}
