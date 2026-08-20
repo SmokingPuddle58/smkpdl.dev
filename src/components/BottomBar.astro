@@ -1,3 +1,7 @@
 ---
+const { text, bg_percentage, bg_color, text_color } = Astro.props;
 ---
 
+<div class="bottom-bar" style="--bg-percentage: ${bg_percentage}; --bg-color: ${bg_color}; --text-color: ${text_color};">
+    <p>{text}</p>
+</div>

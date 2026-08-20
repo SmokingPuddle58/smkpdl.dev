@@ -1,5 +1,5 @@
 [
     { "label": "Home", "path": "/", "icon": "home" },
-    { "label": "Friends", "path": "/friends", "icon": "users" },
-    { "label": "About", "path": "/about", "icon": "info" }
+    { "label": "Blog", "path": "/blog", "icon": "book" },
+    { "label": "Contact", "path": "/contact", "icon": "mail" }
 ]
