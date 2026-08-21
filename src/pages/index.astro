@@ -7,11 +7,16 @@ import { Font } from "astro:assets";
     <Font cssVariable="--font-huninn" />
 </head>
 
+
+<TopBar />
+
+
 Hi! This is SmokingPuddle58. Greetings from Hong Kong :D.
+
+
 
 I am a [You flip the card] :D
 
-<TopBar />
 
 <style>
     body {
@@ -19,4 +24,9 @@ I am a [You flip the card] :D
     }
 </style>
 
-<BottomBar text="Hello World."/>
+<BottomBar text="Hello Worlds."/>
+
+<script>
+  import { gsap } from "gsap";
+  console.log("using GSAP: ", gsap.version);
+</script>
