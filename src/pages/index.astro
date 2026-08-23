@@ -1,32 +1,14 @@
 ---
-import TopBar from '../components/TopBar.astro';
-import BottomBar from '../components/BottomBar.astro';
-import { Font } from "astro:assets";
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
-<head>
-    <Font cssVariable="--font-huninn" />
-</head>
 
+<BaseLayout>
+    Hi! This is SmokingPuddle58. Greetings from Hong Kong :D. I am a [You flip
+    the card] :D
 
-<TopBar />
-
-
-Hi! This is SmokingPuddle58. Greetings from Hong Kong :D.
-
-
-
-I am a [You flip the card] :D
-
-
-<style>
-    body {
-        font-family: 'Huninn', sans-serif;
-    }
-</style>
-
-<BottomBar text="Hello Worlds."/>
-
-<script>
-  import { gsap } from "gsap";
-  console.log("using GSAP: ", gsap.version);
-</script>
+    <style>
+        html {
+            font-family: var(--font-huninn);
+        }
+    </style>
+</BaseLayout>
