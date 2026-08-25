@@ -12,10 +12,10 @@ export const ui = {
     en: {
         "nav.home": "Home",
         "nav.about": "About",
-        "nav.twitter": "Twitter",
+        "nav.X": "X",
     },
-    fr: {
-        "nav.home": "Accueil",
-        "nav.about": "À propos",
+    hkc: {
+        "nav.home": "主頁",
+        "nav.about": "關於",
     },
 } as const;
