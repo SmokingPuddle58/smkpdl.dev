@@ -1,21 +1,38 @@
 ---
-import TopBar from '../components/TopBar.astro';
-import BottomBar from '../components/BottomBar.astro';
+import TopBar from "../components/TopBar.astro";
+import BottomBar from "../components/BottomBar.astro";
 import { Font } from "astro:assets";
 ---
 
 <html>
-  <head>
-    <Font cssVariable="--font-huninn"/>
-  </head>
-  <body>
-    <TopBar />
-    <slot />
-    <BottomBar text="Hello, World!"/>
-  </body>
+    <head>
+        <Font cssVariable="--font-huninn" />
+    </head>
+    <body>
+        <div id="smooth-wrapper">
+            <div id="smooth-content">
+                <TopBar />
+                <slot />
+                <BottomBar text="Hello, World!" />
+            </div>
+        </div>
+    </body>
 </html>
 
 <script>
-  import { gsap } from "gsap";
-  console.log("using GSAP: ", gsap.version);
+    import { gsap } from "gsap";
+
+    import { Draggable } from "gsap/Draggable";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+    // ScrollSmoother requires ScrollTrigger
+    import { ScrollSmoother } from "gsap/ScrollSmoother";
+
+    gsap.registerPlugin(Draggable, ScrollTrigger, ScrollSmoother);
+
+    gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+    ScrollSmoother.create({
+        smooth: 1, // how long (in seconds) it takes to "catch up" to the native scroll position
+        effects: true, // looks for data-speed and data-lag attributes on elements
+        smoothTouch: 0.1, // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
+    });
 </script>
