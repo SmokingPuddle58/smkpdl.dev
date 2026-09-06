@@ -1,5 +1,6 @@
 [
-    { "label": "Home", "path": "/", "icon": "home" },
-    { "label": "Blog", "path": "/blog", "icon": "book" },
-    { "label": "Contact", "path": "/contact", "icon": "mail" }
+    {"keys":"nav.home", "label": "Home", "path": "/", "icon": "home" },
+    {"keys":"nav.blog", "label": "Blog", "path": "/blog", "icon": "book" },
+    {"keys":"nav.contact", "label": "Contact", "path": "/contact", "icon": "mail" },
+    {"keys":"nav.webring", "label": "Webrings", "path": "/webring", "icon": "link" }
 ]

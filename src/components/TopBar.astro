@@ -1,15 +1,66 @@
 ---
-import nav from '../data/nav.json';
+import nav from "../data/nav.json";
 ---
 
-{
-    nav.map((item) => (
-        <a href={item.path} class="nav-link">
-            {item.label}
-        </a>
-    ))
-}
+<div>
+    <ul id="nav">
+        {
+            nav.slice(0, 3).map((item) => (
+                <a href={item.path}>
+                    <li class="nav-link">{item.label}</li>
+                </a>
+            ))
+        }
+    </ul>
+    <ul id="nav">
+    {
+        nav.slice(3, nav.length).map((item) => (
+            <a href={item.path}>
+                <li class="nav-link">{item.label}</li>
+            </a>
+        ))
+    }
+</ul>
+
+    <div>
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="1em"
+            height="1em"
+            viewBox="0 0 1024 1024"
+        >
+            <path d="M0 0h1024v1024H0z" fill="none"></path>
+            <path
+                fill="currentColor"
+                d="M904 160H120c-4.4 0-8 3.6-8 8v64c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-64c0-4.4-3.6-8-8-8m0 624H120c-4.4 0-8 3.6-8 8v64c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-64c0-4.4-3.6-8-8-8m0-312H120c-4.4 0-8 3.6-8 8v64c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-64c0-4.4-3.6-8-8-8"
+            ></path>
+        </svg>
+    </div>
+</div>
+
 
 <style>
-    
+    #nav {
+        max-width: fit-content;
+        margin-left: auto;
+        margin-right: auto;
+        border: 1px solid black;
+        border-radius: 10px;
+        list-style: none;
+        margin-top: -10px;
+        font-size: 0;
+        text-align: center;
+        padding-left: 0px;
+        width: 50%;
+        margin-top: 20px;
+        position: relative;
+    }
+    #nav li {
+        width: 200px;
+        height: 50px;
+        display: inline-block;
+        text-align: center;
+        padding-top: 5px;
+        font-size: 20px;
+    }
 </style>
