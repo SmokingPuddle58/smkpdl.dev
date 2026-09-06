@@ -13,6 +13,7 @@ export const ui = {
         "nav.home": "Home",
         "nav.about": "About",
         "nav.X": "X",
+        "nav.webring": "Webrings",
     },
     hkc: {
         "nav.home": "主頁",
