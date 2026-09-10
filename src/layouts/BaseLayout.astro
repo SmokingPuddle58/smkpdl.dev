@@ -11,8 +11,8 @@ import { Font } from "astro:assets";
     </head>
     <body>
         <div id="smooth-wrapper">
+            <TopBar id="topbar" />
             <div id="smooth-content">
-                <TopBar />
                 <slot />
                 <BottomBar text="Hello, World!" />
             </div>
@@ -35,5 +35,16 @@ import { Font } from "astro:assets";
         smooth: 1, // how long (in seconds) it takes to "catch up" to the native scroll position
         effects: true, // looks for data-speed and data-lag attributes on elements
         smoothTouch: 0.1, // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
+    });
+
+    gsap.to("#topbar", {
+        y: -100,
+        ease: "power3.inOut",
+        scrollTrigger: {
+            trigger: "#smooth-wrapper", 
+            start: "200 top", 
+            end: "85%", 
+            scrub: true, 
+        },
     });
 </script>
