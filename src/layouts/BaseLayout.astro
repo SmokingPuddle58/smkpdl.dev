@@ -13,7 +13,13 @@ import { Font } from "astro:assets";
         <div id="smooth-wrapper">
             <TopBar id="topbar" />
             <div id="smooth-content">
-                <slot />
+                <div class="flex">
+                    <div class="md:w-3/10"></div>
+                    <div class="md:w-2/5 p-5">
+                        <slot />
+                    </div>
+                    <div class="md:w-3/10"></div>
+                </div>
                 <BottomBar text="Hello, World!" />
             </div>
         </div>
@@ -39,12 +45,12 @@ import { Font } from "astro:assets";
 
     gsap.to("#topbar", {
         y: -100,
-        ease: "power3.inOut",
+        ease: "sine.inOut",
         scrollTrigger: {
-            trigger: "#smooth-wrapper", 
-            start: "200 top", 
-            end: "85%", 
-            scrub: true, 
+            trigger: "#smooth-wrapper",
+            start: "300 top",
+            end: "500 top",
+            scrub: true,
         },
     });
 </script>
