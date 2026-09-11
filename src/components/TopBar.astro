@@ -5,7 +5,7 @@ const { id } = Astro.props;
 ---
 
 <!-- Merged Desktop and Phone navigation -->
-<div class="sticky top-0 z-50 navbar flex flex-col lg:flex-row " id={id}>
+<div class="sticky top-0 z-50 navbar flex flex-col lg:flex-row" id={id}>
     <!-- Left Spacer (Desktop only) -->
     <div class="lg:w-1/3 hidden lg:block"></div>
     <!-- Main Navigation -->
@@ -56,19 +56,5 @@ const { id } = Astro.props;
         padding: 0.5em 0.5em;
         color: var(--black);
         text-decoration: none;
-    }
-
-    @keyframes flyOut {
-        to {
-            top: -100%;
-        }
-    }
-
-    @supports (animation-timeline: scroll()) {
-        .navbar {
-            animation: flyOut ease-in-out both;
-            animation-timeline: scroll();
-            animation-range: 50vh 150vh;
-        }
     }
 </style>
