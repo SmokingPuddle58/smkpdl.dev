@@ -1,6 +1,7 @@
 ---
-Title: Meta
-Description: The colophon of this page
+title: "Meta"
+description: "Colophon of this page"
+pubDate: "2026-09-11T11:25:00"
 ---
 
 
