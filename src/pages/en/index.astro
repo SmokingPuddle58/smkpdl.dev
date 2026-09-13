@@ -1,17 +1,49 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import SimpleCard from "../../components/SimpleCard.astro";
 ---
 
 <BaseLayout>
-<p class="flex items-center gap-1 flex-wrap">
-    Hi! This is
-    <img
-        src="../src/assets/author_images/avatar.webp"
-        alt="Author's Avatar"
-        class="rounded-full w-10 border-2 border-blue-300 hover:border-amber-300 ml-1"
-    />
-    <span class="">SmokingPuddle58. I am a </span>
-</p>
+    <p class="flex items-center gap-1 flex-wrap text-md">
+        Hi! This is
+        <img
+            src="../src/assets/author_images/avatar.webp"
+            alt="Author's Avatar"
+            class="rounded-full w-10 border-2 border-blue-300 hover:border-amber-300 ml-1 transition-colors duration-200"
+        />
+        <span class="">SmokingPuddle58. I am a </span>
+        <div class="mt-5 flex flex-horizontal gap-2 flex-wrap container">
+            <SimpleCard
+                img="../src/assets/simple_drawing/cat.svg"
+                rotate="-15"
+                Class="flair--4b"
+            />
+            <SimpleCard
+                img="../src/assets/simple_drawing/hkust.svg"
+                rotate="15"
+                Class="flair--4b"
+            />
+            <SimpleCard
+                img="../src/assets/simple_drawing/coder.svg"
+                rotate="-30"
+                Class="flair--4b"
+            />
+                <SimpleCard
+                img="../src/assets/simple_drawing/maimai.svg"
+                rotate="30"
+                Class="flair--4b"
+            />
+
+        </div>
+        <div class="rounded-lg border-2 border-gray-200 p-5">
+            <div class="text-xl">
+                Cat
+            </div>
+            <span>
+                Definitely, I am a cat.
+            </span>
+        </div>
+    </p>
 </BaseLayout>
 
 <style>
@@ -19,3 +51,18 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         font-family: var(--font-huninn);
     }
 </style>
+
+<script>
+    import { gsap } from "gsap";
+    import { Draggable } from "gsap/Draggable";
+    import { InertiaPlugin } from "gsap/InertiaPlugin";
+
+    gsap.registerPlugin(Draggable, InertiaPlugin);
+
+    Draggable.create(".flair--4b", {
+        type: "x,y",
+        bounds: ".container",
+        inertia: true,
+        dragClickables: true,
+    });
+</script>
