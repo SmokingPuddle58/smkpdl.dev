@@ -1,0 +1,36 @@
+[
+    {
+        "id": "cat",
+        "title_en": "Cat",
+        "title_zh": "貓",
+        "description_en": "Definitely, I am a cat.",
+        "description_zh": "小弟當然是一隻貓。",
+        "rotate": "-15"
+    },
+    {
+        "id": "coder",
+        "title_en": "Coder",
+        "title_zh": "Coder",
+        "description_en": "I code. Casually and also for work.",
+        "description_zh": "小弟寫code的。既為工作也為興趣。",
+                "rotate": "15"
+
+    },
+    {
+        "id": "hkust",
+        "title_en": "HKUSTer",
+        "title_zh": "科大人",
+        "description_en": "I graduated from HKUST. I also work for HKUST now.",
+        "description_zh": "小弟在科大畢業及工作的，所以才有這麼高的素質。",
+                "rotate": "-30"
+
+    },
+    {
+        "id": "maimai",
+        "title_en": "maimaiDX Player",
+        "title_zh": "maimaiDX玩家",
+        "description_en": "Average maimaiDX and some rhythm game player.",
+        "description_zh": "平均maimaiDX及一些音遊玩家。",
+        "rotate": "30"
+    }
+]

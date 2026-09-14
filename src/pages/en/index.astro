@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import SimpleCard from "../../components/SimpleCard.astro";
+import card_info from "../../data/card_info.json";
 ---
 
 <BaseLayout>
@@ -13,37 +14,29 @@ import SimpleCard from "../../components/SimpleCard.astro";
         />
         <span class="">SmokingPuddle58. I am a </span>
         <div class="mt-5 flex flex-horizontal gap-2 flex-wrap container">
-            <SimpleCard
-                img="../src/assets/simple_drawing/cat.svg"
-                rotate="-15"
-                Class="flair--4b"
-            />
-            <SimpleCard
-                img="../src/assets/simple_drawing/hkust.svg"
-                rotate="15"
-                Class="flair--4b"
-            />
-            <SimpleCard
-                img="../src/assets/simple_drawing/coder.svg"
-                rotate="-30"
-                Class="flair--4b"
-            />
-                <SimpleCard
-                img="../src/assets/simple_drawing/maimai.svg"
-                rotate="30"
-                Class="flair--4b"
-            />
-
+            {
+                card_info.map((card) => (
+                    <SimpleCard
+                        img={"../src/assets/simple_drawing/" + card.id + ".svg"}
+                        rotate={card.rotate}
+                        Id={card.id}
+                    />
+                ))
+            }
         </div>
         <div class="rounded-lg border-2 border-gray-200 p-5">
-            <div class="text-xl">
-                Cat
-            </div>
-            <span>
-                Definitely, I am a cat.
+            <div class="text-xl" id="title">Info</div>
+            <span id="description">
+                Drag on a card to see more information.
             </span>
+            <noscript>
+                <p>I am a cat, coder, HKUSTer and a maimaiDX enjoyer. Consider enabling JavaScript to get some better experience. :D</p>
+            </noscript>
         </div>
     </p>
+    <button class="bg-blue-500 w-20 mt-3 rounded-full" id="restore"
+        >Restore</button
+    >
 </BaseLayout>
 
 <style>
@@ -56,13 +49,58 @@ import SimpleCard from "../../components/SimpleCard.astro";
     import { gsap } from "gsap";
     import { Draggable } from "gsap/Draggable";
     import { InertiaPlugin } from "gsap/InertiaPlugin";
+    import card_info from "../../data/card_info.json";
 
     gsap.registerPlugin(Draggable, InertiaPlugin);
 
-    Draggable.create(".flair--4b", {
-        type: "x,y",
-        bounds: ".container",
-        inertia: true,
-        dragClickables: true,
+    function adjustCardText(id: string) {
+        
+    }
+
+    const ids = card_info.map((item) => item.id);
+
+    for (const elem of ids) {
+        Draggable.create(`#${elem}`, {
+            type: "x,y",
+            bounds: ".container",
+            inertia: true,
+            dragClickables: true,
+            onDrag: function () {
+                const card = card_info.find(
+                    (item) => item.id === this.target.id,
+                );
+                if (card) {
+                    const titleElement = document.getElementById("title");
+                    const descriptionElement =
+                        document.getElementById("description");
+                    if (titleElement && descriptionElement) {
+                        titleElement.textContent = card.title_en;
+                        descriptionElement.textContent = card.description_en;
+                    }
+                }
+            },
+        });
+    }
+
+    const button = document.querySelector("#restore");
+    button!.addEventListener("click", () => {
+        for (const elem of ids) {
+            const element = document.getElementById(elem);
+            if (element) {
+                gsap.to(element, {
+                    x: 0,
+                    y: 0,
+                    duration: 0.5,
+                    ease: "power2.out",
+                });
+            }
+        }
+        const titleElement = document.getElementById("title");
+        const descriptionElement = document.getElementById("description");
+        if (titleElement && descriptionElement) {
+            titleElement.textContent = "Info";
+            descriptionElement.textContent =
+                "Drag on a card to see more information.";
+        }
     });
 </script>
