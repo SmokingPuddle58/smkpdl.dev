@@ -1,0 +1,7 @@
+---
+const { text, rotation } = Astro.props;
+---
+
+<div class="rounded-lg border-2 border-gray-200 p-5  bg-white" style={`transform: rotate(${rotation}deg);`}>
+    <p class="text-lg">{text}</p>
+</div>

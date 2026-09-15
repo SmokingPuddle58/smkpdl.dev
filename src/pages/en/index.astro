@@ -1,16 +1,20 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import SimpleCard from "../../components/SimpleCard.astro";
+import IndexLinkCard from "../../components/IndexLinkCard.astro";
 import card_info from "../../data/card_info.json";
+import { Image } from "astro:assets";
+import avatar from "../../assets/author_images/avatar.webp";
 ---
 
 <BaseLayout>
-    <p class="flex items-center gap-1 flex-wrap text-md">
+    <p class="flex items-center gap-1 flex-wrap lg:text-xl md:text-lg">
         Hi! This is
-        <img
-            src="../src/assets/author_images/avatar.webp"
+        <Image
+            src={avatar}
             alt="Author's Avatar"
-            class="rounded-full w-10 border-3 border-blue-300 hover:border-amber-300 ml-1 transition-colors duration-200"
+            class="rounded-full w-10 border-3 border-blue-300 hover:border-amber-300 ml-1 transition-colors duration-300"
+            loading="eager"
         />
         <span class="">SmokingPuddle58. I am a </span>
         <div class="mt-5 flex flex-horizontal gap-2 flex-wrap container">
@@ -24,19 +28,34 @@ import card_info from "../../data/card_info.json";
                 ))
             }
         </div>
-        <div class="rounded-lg border-2 border-gray-200 p-5">
-            <div class="text-xl" id="title">Info</div>
-            <span id="description">
-                Drag on a card to see more information.
+        <div class="rounded-lg border-2 border-gray-200 p-5 w=-full">
+            <div class="text-2xl" id="title">Info</div>
+            <span id="description" class="lg:text-xl md:text-lg">
+                Click / Drag on a square to see more information.
             </span>
             <noscript>
-                <p>I am a cat, coder, HKUSTer and a maimaiDX enjoyer. Consider enabling JavaScript to get some better experience. :D</p>
+                <p>
+                    I am a cat, coder, HKUSTer and a maimaiDX enjoyer. Consider
+                    enabling JavaScript to get some better experience. :D
+                </p>
             </noscript>
+            <div>
+                <button
+                    class="bg-blue-500 w-20 mt-3 rounded-full text-white"
+                    id="restore"
+                    >Restore
+                </button>
+            </div>
         </div>
     </p>
-    <button class="bg-blue-500 w-20 mt-3 rounded-full" id="restore"
-        >Restore</button
-    >
+
+    <div class="md:grid md:grid-cols-2 md:gap-4">
+        <IndexLinkCard text="About Me" rotation={-5} />
+        <IndexLinkCard text="Colophon" rotation={10} />
+        <IndexLinkCard text="Webrings" rotation={-15} />
+        <IndexLinkCard text="About Me" rotation={15} />
+    </div>
+</BaseLayout>
 </BaseLayout>
 
 <style>
@@ -53,10 +72,6 @@ import card_info from "../../data/card_info.json";
 
     gsap.registerPlugin(Draggable, InertiaPlugin);
 
-    function adjustCardText(id: string) {
-        
-    }
-
     const ids = card_info.map((item) => item.id);
 
     for (const elem of ids) {
@@ -65,6 +80,20 @@ import card_info from "../../data/card_info.json";
             bounds: ".container",
             inertia: true,
             dragClickables: true,
+            onClick: function () {
+                const card = card_info.find(
+                    (item) => item.id === this.target.id,
+                );
+                if (card) {
+                    const titleElement = document.getElementById("title");
+                    const descriptionElement =
+                        document.getElementById("description");
+                    if (titleElement && descriptionElement) {
+                        titleElement.textContent = card.title_en;
+                        descriptionElement.textContent = card.description_en;
+                    }
+                }
+            },
             onDrag: function () {
                 const card = card_info.find(
                     (item) => item.id === this.target.id,
@@ -100,7 +129,7 @@ import card_info from "../../data/card_info.json";
         if (titleElement && descriptionElement) {
             titleElement.textContent = "Info";
             descriptionElement.textContent =
-                "Drag on a card to see more information.";
+                "Click / Drag on a square to see more information.";
         }
     });
 </script>
