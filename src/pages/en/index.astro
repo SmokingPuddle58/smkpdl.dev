@@ -8,15 +8,19 @@ import avatar from "../../assets/author_images/avatar.webp";
 ---
 
 <BaseLayout>
-    <p class="flex items-center gap-1 flex-wrap lg:text-xl md:text-lg">
-        Hi! This is
-        <Image
-            src={avatar}
-            alt="Author's Avatar"
-            class="rounded-full w-10 border-3 border-blue-300 hover:border-amber-300 ml-1 transition-colors duration-300"
-            loading="eager"
-        />
-        <span class="">SmokingPuddle58. I am a </span>
+    <div class="flex flex-col items-center w-full">
+        <div
+            class="flex items-center justify-center gap-1 flex-wrap lg:text-xl md:text-lg w-full text-center"
+        >
+            Hi! This is
+            <Image
+                src={avatar}
+                alt="Author's Avatar"
+                class="rounded-full w-10 border-3 border-blue-300 hover:border-amber-300 ml-1 transition-colors duration-300"
+                loading="eager"
+            />
+            <span class="">SmokingPuddle58. I am a </span>
+        </div>
         <div class="mt-5 flex flex-horizontal gap-2 flex-wrap container">
             {
                 card_info.map((card) => (
@@ -28,7 +32,7 @@ import avatar from "../../assets/author_images/avatar.webp";
                 ))
             }
         </div>
-        <div class="rounded-lg border-2 border-gray-200 p-5 w=-full">
+        <div class="rounded-lg border-2 border-gray-200 p-5 w-full m-5">
             <div class="text-2xl" id="title">Info</div>
             <span id="description" class="lg:text-xl md:text-lg">
                 Click / Drag on a square to see more information.
@@ -43,19 +47,34 @@ import avatar from "../../assets/author_images/avatar.webp";
                 <button
                     class="bg-blue-500 w-20 mt-3 rounded-full text-white"
                     id="restore"
-                    >Restore
+                    >Reset
                 </button>
             </div>
         </div>
-    </p>
-
-    <div class="md:grid md:grid-cols-2 md:gap-4">
-        <IndexLinkCard text="About Me" rotation={-5} />
-        <IndexLinkCard text="Colophon" rotation={10} />
-        <IndexLinkCard text="Webrings" rotation={-15} />
-        <IndexLinkCard text="About Me" rotation={15} />
     </div>
-</BaseLayout>
+
+    <div class="md:grid md:grid-cols-2 md:gap-4 mt-2">
+        <IndexLinkCard
+            title="About Me"
+            rotation={-5}
+            description="Learn more about me!"
+        />
+        <IndexLinkCard
+            title="Colophon"
+            rotation={-5}
+            description="Informations about this page !"
+        />
+        <IndexLinkCard
+            title="Webrings"
+            rotation={-5}
+            description="Coming from webrings? Continue your journey here!"
+        />
+        <IndexLinkCard
+            title="Blogs"
+            rotation={-5}
+            description="My latest blog posts!"
+        />
+    </div>
 </BaseLayout>
 
 <style>

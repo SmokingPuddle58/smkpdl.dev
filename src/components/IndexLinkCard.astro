@@ -1,7 +1,8 @@
 ---
-const { text, rotation } = Astro.props;
+const { title, rotation, description } = Astro.props;
 ---
 
-<div class="rounded-lg border-2 border-gray-200 p-5  bg-white" style={`transform: rotate(${rotation}deg);`}>
-    <p class="text-lg">{text}</p>
+<div class="rounded-lg border-2 border-gray-200 p-5 mb-3 bg-white w-full" style={`transform: rotate(${rotation}deg);`}>
+    <p class="text-lg">{title}</p>
+    <p class="text-md text-gray-600">{description}</p>
 </div>
