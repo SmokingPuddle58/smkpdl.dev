@@ -27,8 +27,8 @@
         "id": "maimai",
         "title_en": "maimaiDX Player",
         "title_zh": "maimaiDX玩家",
-        "description_en": "Average maimaiDX and some rhythm game (Chunithm maybe) player.",
-        "description_zh": "平均maimaiDX及一些音遊(Chunithm)玩家。",
+        "description_en": "Average maimaiDX and some rhythm game (Chunithm included) player.",
+        "description_zh": "平均maimaiDX及一些音遊(包含Chunithm)玩家。",
         "rotate": "30"
     }
 ]
