@@ -1,0 +1,165 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SimpleCard from "../../components/SimpleCard.astro";
+import IndexLinkCard from "../../components/IndexLinkCard.astro";
+import card_info from "../../data/card_info.json";
+import { Image } from "astro:assets";
+import avatar from "../../assets/author_images/avatar.webp";
+---
+
+<BaseLayout>
+    <div class="flex flex-col items-center w-full">
+        <div
+            class="flex items-center justify-center gap-1 flex-wrap lg:text-xl md:text-lg w-full text-center"
+        >
+            Hi! 我是
+            <Image
+                src={avatar}
+                alt="Author's Avatar"
+                class="rounded-full w-10 border-3 border-blue-300 hover:border-amber-300 ml-1 transition-colors duration-300"
+                loading="eager"
+            />
+            <span class="">SmokingPuddle58. 我是 </span>
+        </div>
+        <div class="mt-5 flex flex-horizontal gap-2 flex-wrap container">
+            {
+                card_info.map((card) => (
+                    <SimpleCard
+                        img={"../src/assets/simple_drawing/" + card.id + ".svg"}
+                        rotate={card.rotate}
+                        Id={card.id}
+                    />
+                ))
+            }
+        </div>
+        <div
+            class="rounded-lg border-2 border-gray-200 p-5 w-full m-5 bg-white"
+        >
+            <div class="text-2xl" id="title">資訊
+            </div>
+            <span id="description" class="lg:text-xl md:text-lg">
+                
+            </span>
+            <noscript>
+                <p>
+                    I am a cat, coder, HKUSTer and a maimaiDX enjoyer. Consider
+                    enabling JavaScript to get some better experience. :D
+                </p>
+            </noscript>
+            <div>
+                <button
+                    class="bg-blue-500 w-20 mt-3 rounded-full text-white"
+                    id="restore"
+                    >重設
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="md:grid md:grid-cols-2 md:gap-4 mt-2">
+        <IndexLinkCard
+            title="關於我"
+            rotation={-5}
+            description="了解更多關於我的資訊！"
+        />
+        <IndexLinkCard
+            title="Colophon"
+            rotation={-5}
+            description="關於這頁面的資訊！"
+        />
+        <IndexLinkCard
+            title="Webrings"
+            rotation={-5}
+            description="自Webring而來? 於此繼續行程！"
+        />
+        <IndexLinkCard
+            title="部落格"
+            rotation={-5}
+            description="小弟最新的文章！"
+        />
+    </div>
+</BaseLayout>
+
+<style>
+    html {
+        font-family: var(--font-huninn);
+    }
+</style>
+
+<script>
+    import { gsap } from "gsap";
+    import { Draggable } from "gsap/Draggable";
+    import { InertiaPlugin } from "gsap/InertiaPlugin";
+    import card_info from "../../data/card_info.json";
+
+    gsap.registerPlugin(Draggable, InertiaPlugin);
+
+    const ids = card_info.map((item) => item.id);
+
+    const titleElement = document.getElementById("title");
+    const descriptionElement = document.getElementById("description");
+    if (titleElement && descriptionElement) {
+        titleElement.textContent = "資訊";
+        descriptionElement.textContent =
+            "請點擊或拖動正方形圖形以查看更多資訊。";
+    }
+
+    for (const elem of ids) {
+        Draggable.create(`#${elem}`, {
+            type: "x,y",
+            bounds: ".container",
+            inertia: true,
+            dragClickables: true,
+            onClick: function () {
+                const card = card_info.find(
+                    (item) => item.id === this.target.id,
+                );
+                if (card) {
+                    const titleElement = document.getElementById("title");
+                    const descriptionElement =
+                        document.getElementById("description");
+                    if (titleElement && descriptionElement) {
+                        titleElement.textContent = card.title_zh;
+                        descriptionElement.textContent = card.description_zh;
+                    }
+                }
+            },
+            onDrag: function () {
+                const card = card_info.find(
+                    (item) => item.id === this.target.id,
+                );
+                if (card) {
+                    const titleElement = document.getElementById("title");
+                    const descriptionElement =
+                        document.getElementById("description");
+                    if (titleElement && descriptionElement) {
+                        titleElement.textContent = card.title_zh;
+                        descriptionElement.textContent = card.description_zh;
+                    }
+                }
+            },
+        });
+    }
+
+    const button = document.querySelector("#restore");
+    button!.addEventListener("click", () => {
+        for (const elem of ids) {
+            const element = document.getElementById(elem);
+            if (element) {
+                gsap.to(element, {
+                    x: 0,
+                    y: 0,
+                    duration: 0.5,
+                    ease: "power2.out",
+                });
+            }
+        }
+        const titleElement = document.getElementById("title");
+        const descriptionElement = document.getElementById("description");
+        if (titleElement && descriptionElement) {
+            titleElement.textContent = "資訊";
+            descriptionElement.textContent =
+                "請點擊或拖動正方形圖形以查看更多資訊。";
+        }
+    });
+</script>
