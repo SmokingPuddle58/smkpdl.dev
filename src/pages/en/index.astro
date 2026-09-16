@@ -32,10 +32,12 @@ import avatar from "../../assets/author_images/avatar.webp";
                 ))
             }
         </div>
-        <div class="rounded-lg border-2 border-gray-200 p-5 w-full m-5">
+        <div
+            class="rounded-lg border-2 border-gray-200 p-5 w-full m-5 bg-white"
+        >
             <div class="text-2xl" id="title">Info</div>
             <span id="description" class="lg:text-xl md:text-lg">
-                Click / Drag on a square to see more information.
+                
             </span>
             <noscript>
                 <p>
@@ -92,6 +94,14 @@ import avatar from "../../assets/author_images/avatar.webp";
     gsap.registerPlugin(Draggable, InertiaPlugin);
 
     const ids = card_info.map((item) => item.id);
+
+    const titleElement = document.getElementById("title");
+    const descriptionElement = document.getElementById("description");
+    if (titleElement && descriptionElement) {
+        titleElement.textContent = "Info";
+        descriptionElement.textContent =
+            "Click / Drag on a square to see more information.";
+    }
 
     for (const elem of ids) {
         Draggable.create(`#${elem}`, {
