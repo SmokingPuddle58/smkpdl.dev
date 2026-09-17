@@ -2,6 +2,13 @@
 const { text, bg_percentage, bg_color, text_color } = Astro.props;
 ---
 
-<div class="bottom-bar" style="--bg-percentage: ${bg_percentage}; --bg-color: ${bg_color}; --text-color: ${text_color};">
-    <p>{text}</p>
+<div class="flex flex-row sticky top-0 z-50 min-h-15 ">
+    <div class="flex w-1/10"></div>
+    <div
+        class="flex w-4/5 bg-amber-50 justify-center "
+        style=`--bg-percentage: ${bg_percentage}; --bg-color: ${bg_color}; --text-color: ${text_color};`
+    >
+        <p>{text}</p>
+    </div>
+    <div class="flex w-1/10"></div>
 </div>
