@@ -12,9 +12,16 @@ import { Font } from "astro:assets";
             content="width=device-width, initial-scale=1.0"
             charset="utf-8"
         />
+        <noscript>
+            <style>
+                html {
+                    background: #f9f8f8;
+                }
+            </style>
+        </noscript>
     </head>
     <body>
-        <div id="smooth-wrapper" class="bg-[#F9F8F8]">
+        <div id="smooth-wrapper" class="bg-[#F9F8F8] mb-10">
             <TopBar id="topbar" />
             <div id="smooth-content">
                 <div class="flex">
@@ -24,8 +31,8 @@ import { Font } from "astro:assets";
                     </div>
                     <div class="w-1/30 md:w-1/20 lg:w-3/10"></div>
                 </div>
-                <BottomBar text="Hello, World!" />
             </div>
+            <BottomBar text="Hello, World!" id="bottombar" />
         </div>
     </body>
 </html>
@@ -49,6 +56,17 @@ import { Font } from "astro:assets";
 
     gsap.to("#topbar", {
         y: -100,
+        ease: "sine.inOut",
+        scrollTrigger: {
+            trigger: "#smooth-wrapper",
+            start: "300 top",
+            end: "500 top",
+            scrub: true,
+        },
+    });
+
+    gsap.from("#bottombar", {
+        y: 100,
         ease: "sine.inOut",
         scrollTrigger: {
             trigger: "#smooth-wrapper",
