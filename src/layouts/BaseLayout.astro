@@ -16,11 +16,12 @@ import { Font } from "astro:assets";
             <style>
                 html {
                     background: #f9f8f8;
+                    min-height: 100vh;
                 }
             </style>
         </noscript>
     </head>
-    <body>
+    <body class="bg-[#F9F8F8]">
         <div id="smooth-wrapper" class="bg-[#F9F8F8] mb-10">
             <TopBar id="topbar" />
             <div id="smooth-content">
@@ -34,6 +35,7 @@ import { Font } from "astro:assets";
             </div>
             <BottomBar text="Hello, World!" id="bottombar" />
         </div>
+
     </body>
 </html>
 
@@ -48,11 +50,11 @@ import { Font } from "astro:assets";
     gsap.registerPlugin(Draggable, ScrollTrigger, ScrollSmoother);
 
     gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
-    ScrollSmoother.create({
-        smooth: 1, // how long (in seconds) it takes to "catch up" to the native scroll position
-        effects: true, // looks for data-speed and data-lag attributes on elements
-        smoothTouch: 0.5, // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
-    });
+    // ScrollSmoother.create({
+    //     smooth: 1, // how long (in seconds) it takes to "catch up" to the native scroll position
+    //     effects: true, // looks for data-speed and data-lag attributes on elements
+    //     smoothTouch: false, // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
+    // });
 
     gsap.to("#topbar", {
         y: -100,
