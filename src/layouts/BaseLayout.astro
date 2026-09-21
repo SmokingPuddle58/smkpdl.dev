@@ -2,24 +2,23 @@
 import TopBar from "../components/TopBar.astro";
 import BottomBar from "../components/BottomBar.astro";
 import { Font } from "astro:assets";
+import "../styles/global.css";
+import "@fontsource/huninn";
 ---
 
 <html>
     <head>
-        <Font cssVariable="--font-huninn" />
         <meta
             name="viewport"
             content="width=device-width, initial-scale=1.0"
             charset="utf-8"
         />
-        <noscript>
-            <style>
-                html {
-                    background: #f9f8f8;
-                    min-height: 100vh;
-                }
-            </style>
-        </noscript>
+        <style>
+            body {
+                background: #f9f8f8;
+                font-family: "Huninn";
+            }
+        </style>
     </head>
     <body class="bg-[#F9F8F8]">
         <div id="smooth-wrapper" class="bg-[#F9F8F8] mb-10">
@@ -35,7 +34,6 @@ import { Font } from "astro:assets";
             </div>
             <BottomBar text="Hello, World!" id="bottombar" />
         </div>
-
     </body>
 </html>
 
@@ -45,11 +43,10 @@ import { Font } from "astro:assets";
     import { Draggable } from "gsap/Draggable";
     import { ScrollTrigger } from "gsap/ScrollTrigger";
     // ScrollSmoother requires ScrollTrigger
-    import { ScrollSmoother } from "gsap/ScrollSmoother";
 
-    gsap.registerPlugin(Draggable, ScrollTrigger, ScrollSmoother);
+    gsap.registerPlugin(Draggable, ScrollTrigger);
 
-    gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+    gsap.registerPlugin(ScrollTrigger);
     // ScrollSmoother.create({
     //     smooth: 1, // how long (in seconds) it takes to "catch up" to the native scroll position
     //     effects: true, // looks for data-speed and data-lag attributes on elements
