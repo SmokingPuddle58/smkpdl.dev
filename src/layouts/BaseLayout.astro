@@ -43,30 +43,19 @@ import "@fontsource/huninn";
 
     gsap.registerPlugin(Draggable, ScrollTrigger);
 
-    let mm = gsap.matchMedia();
-
-    mm.add(
-        {
-            isDesktop: "(min-height: 0px)",
-            isMobile: "(min-height: 0px)",
+    const showHeader = gsap.quickTo("#topbar", "y", {
+        duration: 0.3,
+        ease: "power2.out",
+    });
+    ScrollTrigger.create({
+        trigger: "#smooth-wrapper",
+        start: "300 top",
+        onUpdate: (self) => {
+            if (self.direction === 1) {
+                showHeader(-100);
+            } else if (self.direction === -1) {
+                showHeader(0);
+            }
         },
-        (context) => {
-            const showHeader = gsap.quickTo("#topbar", "y", {
-                duration: 0.3,
-                ease: "power2.out",
-            });
-
-            ScrollTrigger.create({
-                trigger: "#smooth-wrapper",
-                start: "300 top",
-                onUpdate: (self) => {
-                    if (self.direction === 1) {
-                        showHeader(-100);
-                    } else if (self.direction === -1) {
-                        showHeader(0);
-                    }
-                },
-            });
-        },
-    );
+    });
 </script>
