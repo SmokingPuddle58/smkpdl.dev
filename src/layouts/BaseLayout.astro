@@ -1,7 +1,6 @@
 ---
 import TopBar from "../components/TopBar.astro";
 import BottomBar from "../components/BottomBar.astro";
-import { Font } from "astro:assets";
 import "../styles/global.css";
 import "@fontsource/huninn";
 ---
@@ -39,40 +38,35 @@ import "@fontsource/huninn";
 
 <script>
     import { gsap } from "gsap";
-
     import { Draggable } from "gsap/Draggable";
     import { ScrollTrigger } from "gsap/ScrollTrigger";
-    // ScrollSmoother requires ScrollTrigger
 
     gsap.registerPlugin(Draggable, ScrollTrigger);
 
-    gsap.registerPlugin(ScrollTrigger);
+    let mm = gsap.matchMedia();
 
-    gsap.to("#topbar", {
-        y: -100,
-        ease: "sine.inOut",
-        scrollTrigger: {
-            trigger: "#smooth-wrapper",
-            start: "300 top",
-            end: "500 top",
-            scrub: true,
+    mm.add(
+        {
+            isDesktop: "(min-height: 0px)",
+            isMobile: "(min-height: 0px)",
         },
-    });
+        (context) => {
+            const showHeader = gsap.quickTo("#topbar", "y", {
+                duration: 0.3,
+                ease: "power2.out",
+            });
 
-    gsap.from("#bottombar", {
-        y: 100,
-        ease: "sine.inOut",
-        scrollTrigger: {
-            trigger: "#smooth-wrapper",
-            start: "100 top",
-            end: "500 top",
-            scrub: true,
+            ScrollTrigger.create({
+                trigger: "#smooth-wrapper",
+                start: "300 top",
+                onUpdate: (self) => {
+                    if (self.direction === 1) {
+                        showHeader(-100);
+                    } else if (self.direction === -1) {
+                        showHeader(0);
+                    }
+                },
+            });
         },
-    });
-
-    // ScrollSmoother.create({
-    //     smooth: 1, // how long (in seconds) it takes to "catch up" to the native scroll position
-    //     effects: true, // looks for data-speed and data-lag attributes on elements
-    //     smoothTouch: false, // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
-    // });
+    );
 </script>
