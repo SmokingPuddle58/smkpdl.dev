@@ -1,17 +1,23 @@
 ---
 import nav from "../data/nav.json";
 import "../styles/global.css";
-const { id } = Astro.props;
----
+const { id, lang } = Astro.props;
 
+const getLabel = (item: Record<string, any>, lang: string) =>
+    item[`label_${lang}`] ?? item.label_en;
+---
 <div class="sticky top-5 z-5000 flex justify-center px-4" id={id}>
     <div
         class="shadow-md border-2 border-gray-200 w-[80%] lg:max-w-[29%] bg-white rounded-lg h-15 flex items-center justify-center mr-3"
     >
         <div class="flex justify-between w-full px-6">
-            <div class="flex">主頁</div>
-            <div class="flex">部落格</div>
-            <div class="flex">聯繫我</div>
+            {
+                nav.slice(0, 3).map((item) => (
+                    <a class="flex" href={item.path}>
+                        {getLabel(item, lang)}
+                    </a>
+                ))
+            }
         </div>
     </div>
     <div

@@ -2,8 +2,7 @@
 
 export const languages = {
     en: "English",
-    hkc: "粵語",
-    hkt: "繁體中文",
+    zh_hant: "繁體中文",
 };
 
 export const defaultLang = "en";
@@ -15,8 +14,11 @@ export const ui = {
         "nav.X": "X",
         "nav.webring": "Webrings",
     },
-    hkc: {
-        "nav.home": "主頁",
-        "nav.about": "關於",
+    zh_hant: {
+        "nav.home": "Home",
+        "nav.about": "About",
+        "nav.X": "X",
+        "nav.webring": "Webrings",
     },
+
 } as const;

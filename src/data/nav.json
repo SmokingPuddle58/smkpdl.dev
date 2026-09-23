@@ -1,6 +1,30 @@
 [
-    {"keys":"nav.home", "label": "Home", "path": "/", "icon": "home" },
-    {"keys":"nav.blog", "label": "Blog", "path": "/blog", "icon": "book" },
-    {"keys":"nav.contact", "label": "Contact", "path": "/contact", "icon": "mail" },
-    {"keys":"nav.webring", "label": "Webrings", "path": "/webring", "icon": "link" }
+    {
+        "keys": "nav.home",
+        "label_en": "Home",
+        "label_zh_hant": "主頁",
+        "path": "/",
+        "icon": "home"
+    },
+    {
+        "keys": "nav.blog",
+        "label_en": "Blog",
+        "label_zh_hant": "部落格",
+        "path": "/blog",
+        "icon": "book"
+    },
+    {
+        "keys": "nav.contact",
+        "label_en": "About",
+        "label_zh_hant": "關於我",
+        "path": "/about",
+        "icon": "mail"
+    },
+    {
+        "keys": "nav.webring",
+        "label_en": "Webrings",
+        "label_zh": "Webrings",
+        "path": "/webring",
+        "icon": "link"
+    }
 ]
