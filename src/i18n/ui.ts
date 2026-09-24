@@ -2,7 +2,7 @@
 
 export const languages = {
     en: "English",
-    zh_hant: "繁體中文",
+    "zh-hant": "繁體中文",
 };
 
 export const defaultLang = "en";
@@ -14,7 +14,7 @@ export const ui = {
         "nav.X": "X",
         "nav.webring": "Webrings",
     },
-    zh_hant: {
+    "zh-hant": {
         "nav.home": "Home",
         "nav.about": "About",
         "nav.X": "X",
