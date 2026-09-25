@@ -11,7 +11,7 @@
         "label_en": "Blog",
         "label_zh-hant": "部落格",
         "path": "/blog",
-        "icon": "book"
+        "icon": "blog"
     },
     {
         "keys": "nav.contact",

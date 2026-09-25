@@ -3,9 +3,8 @@ import nav from "../data/nav.json";
 import "../styles/global.css";
 const { id, lang } = Astro.props;
 
-const getLabel = (item: Record<string, any>, lang: string) =>
-    item[`label_${lang}`] ?? item.label_en;
 ---
+
 <div class="sticky top-5 z-5000 flex justify-center px-4" id={id}>
     <div
         class="shadow-md border-2 border-gray-200 w-[80%] lg:max-w-[29%] bg-white rounded-lg h-15 flex items-center justify-center mr-3"
@@ -13,9 +12,14 @@ const getLabel = (item: Record<string, any>, lang: string) =>
         <div class="flex justify-between w-full px-6">
             {
                 nav.slice(0, 3).map((item) => (
-                    <a class="flex" href={item.path}>
-                        {getLabel(item, lang)}
-                    </a>
+                    <div class="flex flex-row">
+                        <div class="flex-row mr-2 hidden md:flex">
+                            <img src=`../src/assets/icons/${item.icon}.svg`>
+                        </div>
+                        <a class="flex" href={item.path}>
+                            {item[`label_${lang}` as keyof typeof item]}
+                        </a>
+                    </div>
                 ))
             }
         </div>
