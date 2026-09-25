@@ -16,7 +16,7 @@ const { id, lang } = Astro.props;
                         <div class="flex-row mr-2 hidden md:flex">
                             <img src=`../src/assets/icons/${item.icon}.svg`>
                         </div>
-                        <a class="flex" href={item.path}>
+                        <a class="flex whitespace-nowrap items-center" href={item.path}>
                             {item[`label_${lang}` as keyof typeof item]}
                         </a>
                     </div>
