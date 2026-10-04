@@ -11,5 +11,9 @@ export default defineConfig({
         provider: fontProviders.fontsource(),
         name: "Huninn",
         cssVariable: "--font-huninn",
-    }]
+    }],
+    i18n: {
+        locales: ["en", "zh-hant"],
+        defaultLocale: "en",
+    }
 });

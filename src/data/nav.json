@@ -23,7 +23,7 @@
     {
         "keys": "nav.webring",
         "label_en": "Webrings",
-        "label_zh": "Webrings",
+        "label_zh-hant": "Webrings",
         "path": "/webring",
         "icon": "link"
     }
