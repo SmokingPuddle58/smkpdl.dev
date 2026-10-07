@@ -5,7 +5,10 @@ import { ThemeIcon } from "./ThemeIcon.astro";
 const { id, lang } = Astro.props;
 ---
 
-<div class="sticky top-5 z-5000 flex flex-col items-center px-4 gap-2 relative" id={id}>
+<div
+    class="sticky top-5 z-5000 flex flex-col items-center px-4 gap-2 relative"
+    id={id}
+>
     <div class="flex justify-center w-full">
         <div
             class="shadow-md border-2 border-gray-200 w-[80%] lg:max-w-[29%] bg-white rounded-lg h-15 flex items-center justify-center mr-3 whitespace-nowrap"
@@ -15,7 +18,10 @@ const { id, lang } = Astro.props;
                     nav.slice(0, 3).map((item) => (
                         <div class="flex flex-row">
                             <div class="flex-row mr-2 hidden md:flex">
-                                <img src={`../src/assets/icons/${item.icon}.svg`} alt="" />
+                                <img
+                                    src={`../src/assets/icons/${item.icon}.svg`}
+                                    alt=""
+                                />
                             </div>
                             <a class="flex" href={item.path}>
                                 {item[`label_${lang}` as keyof typeof item]}
@@ -26,13 +32,15 @@ const { id, lang } = Astro.props;
             </div>
         </div>
 
-        {/*
+        {
+            /*
             <details>/<summary> is the no-JS fallback widget.
             The panel is absolutely positioned relative to the outer
             (now `relative`) sticky container, so its width tracks the
             flex row above rather than being constrained to the 20%
             details element.
-        */}
+        */
+        }
         <details id="menu-details" class="w-[20%] lg:max-w-[5%]">
             <summary
                 id="menu-toggle"
@@ -58,28 +66,39 @@ const { id, lang } = Astro.props;
                 </div>
             </summary>
 
-            {/*
+            {
+                /*
                 Width formula:
                   flex row width        = 100% - 2rem  (sticky px-4)
                   bar + toggle on lg    = 34% of that + 0.75rem (mr-3)
                 So the panel's lg cap = (100% - 2rem) * 0.34 + 0.75rem
                 On small screens left-4 / right-4 already equals the
                 flex row width, so no extra rule is needed.
-            */}
+            */
+            }
             <div
                 id="ext-menu"
                 class="absolute left-4 right-4 mx-auto top-[4.25rem] border-2 border-gray-200 bg-white rounded-lg overflow-hidden shadow-md lg:max-w-[calc((100%-2rem)*0.34+0.75rem)]"
             >
-                <div class="h-15 flex items-center justify-center whitespace-nowrap">
+                <div
+                    class="h-15 flex items-center justify-center whitespace-nowrap"
+                >
                     <div class="flex justify-between w-full px-6">
                         {
                             nav.slice(0, 4).map((item) => (
                                 <div class="flex flex-row">
                                     <div class="flex-row mr-2 hidden md:flex">
-                                        <img src={`../src/assets/icons/${item.icon}.svg`} alt="" />
+                                        <img
+                                            src={`../src/assets/icons/${item.icon}.svg`}
+                                            alt=""
+                                        />
                                     </div>
                                     <a class="flex" href={item.path}>
-                                        {item[`label_${lang}` as keyof typeof item]}
+                                        {
+                                            item[
+                                                `label_${lang}` as keyof typeof item
+                                            ]
+                                        }
                                     </a>
                                 </div>
                             ))
@@ -87,34 +106,51 @@ const { id, lang } = Astro.props;
                     </div>
                 </div>
 
-                <div class="h-15 flex items-center justify-center whitespace-nowrap">
+                <div
+                    class="h-15 flex items-center justify-center whitespace-nowrap"
+                >
                     <div class="flex justify-between w-full px-6">
                         <div class="flex flex-row">
                             <div class="flex-row mr-2 hidden md:flex">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 512 512">
-                                    <path d="M0 0h512v512H0z" fill="none" />
-                                    <path fill="currentColor" d="m478.33 433.6l-90-218a22 22 0 0 0-40.67 0l-90 218a22 22 0 1 0 40.67 16.79L316.66 406h102.67l18.33 44.39A22 22 0 0 0 458 464a22 22 0 0 0 20.32-30.4ZM334.83 362L368 281.65L401.17 362Zm-66.99-19.08a22 22 0 0 0-4.89-30.7c-.2-.15-15-11.13-36.49-34.73c39.65-53.68 62.11-114.75 71.27-143.49H330a22 22 0 0 0 0-44H214V70a22 22 0 0 0-44 0v20H54a22 22 0 0 0 0 44h197.25c-9.52 26.95-27.05 69.5-53.79 108.36c-31.41-41.68-43.08-68.65-43.17-68.87a22 22 0 0 0-40.58 17c.58 1.38 14.55 34.23 52.86 83.93c.92 1.19 1.83 2.35 2.74 3.51c-39.24 44.35-77.74 71.86-93.85 80.74a22 22 0 1 0 21.07 38.63c2.16-1.18 48.6-26.89 101.63-85.59c22.52 24.08 38 35.44 38.93 36.1a22 22 0 0 0 30.75-4.9Z" />
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="1em"
+                                    height="1em"
+                                    viewBox="0 0 512 512"
+                                >
+                                    <path d="M0 0h512v512H0z" fill="none"
+                                    ></path>
+                                    <path
+                                        fill="currentColor"
+                                        d="m478.33 433.6l-90-218a22 22 0 0 0-40.67 0l-90 218a22 22 0 1 0 40.67 16.79L316.66 406h102.67l18.33 44.39A22 22 0 0 0 458 464a22 22 0 0 0 20.32-30.4ZM334.83 362L368 281.65L401.17 362Zm-66.99-19.08a22 22 0 0 0-4.89-30.7c-.2-.15-15-11.13-36.49-34.73c39.65-53.68 62.11-114.75 71.27-143.49H330a22 22 0 0 0 0-44H214V70a22 22 0 0 0-44 0v20H54a22 22 0 0 0 0 44h197.25c-9.52 26.95-27.05 69.5-53.79 108.36c-31.41-41.68-43.08-68.65-43.17-68.87a22 22 0 0 0-40.58 17c.58 1.38 14.55 34.23 52.86 83.93c.92 1.19 1.83 2.35 2.74 3.51c-39.24 44.35-77.74 71.86-93.85 80.74a22 22 0 1 0 21.07 38.63c2.16-1.18 48.6-26.89 101.63-85.59c22.52 24.08 38 35.44 38.93 36.1a22 22 0 0 0 30.75-4.9Z"
+                                    ></path>
                                 </svg>
                             </div>
-                            <span class="flex">
-                                Language
-                            </span>
+                            <span class="flex"> Language </span>
                         </div>
                     </div>
                 </div>
 
-                <div class="h-15 flex items-center justify-center whitespace-nowrap">
+                <div
+                    class="h-15 flex items-center justify-center whitespace-nowrap"
+                >
                     <div class="flex justify-between w-full px-6">
                         <div class="flex flex-row">
                             <div class="flex-row mr-2 hidden md:flex">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20">
-                                    <path d="M0 0h20v20H0z" fill="none" />
-                                    <path fill="currentColor" d="M10 3.5a6.5 6.5 0 1 1 0 13zM10 2a8 8 0 1 0 0 16a8 8 0 0 0 0-16" />
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="1em"
+                                    height="1em"
+                                    viewBox="0 0 20 20"
+                                >
+                                    <path d="M0 0h20v20H0z" fill="none"></path>
+                                    <path
+                                        fill="currentColor"
+                                        d="M10 3.5a6.5 6.5 0 1 1 0 13zM10 2a8 8 0 1 0 0 16a8 8 0 0 0 0-16"
+                                    ></path>
                                 </svg>
                             </div>
-                            <span class="flex">
-                                Theme 
-                            </span>
+                            <span class="flex"> Theme </span>
                         </div>
                     </div>
                 </div>
@@ -123,27 +159,57 @@ const { id, lang } = Astro.props;
     </div>
 </div>
 
-{/*
+{
+    /*
     No-JS animation.
     `html.js` is added by the script below; while it is absent (JS
     disabled or failed to load), these rules drive the open animation
     on the panel. Once JS boots, the class is added and the rules are
     inert, so the GSAP timeline takes over.
-*/}
+*/
+}
+{
+    /*
+    No-JS animation.
+    `html.js` is added by the script below; while it is absent (JS
+    disabled or failed to load), these rules drive the open/close
+    animation on the panel. Once JS boots, the class is added and the
+    rules are inert, so the GSAP timeline takes over.
+
+    Close animation is best-effort: the browser may hide the content
+    before the transition finishes. Modern browsers that support
+    transition-behavior: allow-discrete / content-visibility fare better.
+*/
+}
 <style is:global>
     @media (prefers-reduced-motion: no-preference) {
-        html:not(.js) #menu-details[open] #ext-menu {
-            animation: menu-slide-in 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+        /*
+         * A closed <details> normally stops rendering its non-summary content
+         * via `content-visibility: hidden` on ::details-content. That happens
+         * the same frame `[open]` is removed, so there is nothing left to
+         * animate. Overriding it to `visible` keeps the panel in the render
+         * tree while closed; because the panel is absolutely positioned it
+         * contributes nothing to layout, so this is safe.
+         */
+        html:not(.js) #menu-details::details-content {
+            content-visibility: visible;
         }
-    }
 
-    @keyframes menu-slide-in {
-        from {
+        /* Closed state — we now own the hiding. */
+        html:not(.js) #menu-details #ext-menu {
             opacity: 0;
+            visibility: hidden;
             transform: translateY(-8px);
+            transition:
+                opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                visibility 0.35s;
         }
-        to {
+
+        /* Open state. */
+        html:not(.js) #menu-details[open] #ext-menu {
             opacity: 1;
+            visibility: visible;
             transform: translateY(0);
         }
     }
@@ -156,8 +222,12 @@ const { id, lang } = Astro.props;
     // this to stay out of the way of the GSAP-driven animation.
     document.documentElement.classList.add("js");
 
-    const details = document.getElementById("menu-details") as HTMLDetailsElement | null;
-    const summary = document.getElementById("menu-toggle") as HTMLElement | null;
+    const details = document.getElementById(
+        "menu-details",
+    ) as HTMLDetailsElement | null;
+    const summary = document.getElementById(
+        "menu-toggle",
+    ) as HTMLElement | null;
     const extMenu = document.getElementById("ext-menu") as HTMLElement | null;
 
     if (details && summary && extMenu) {
@@ -167,7 +237,7 @@ const { id, lang } = Astro.props;
         const announce = (open: boolean) => {
             summary.setAttribute("aria-expanded", String(open));
             window.dispatchEvent(
-                new CustomEvent("menu-toggle", { detail: { open } })
+                new CustomEvent("menu-toggle", { detail: { open } }),
             );
         };
 
@@ -219,7 +289,11 @@ const { id, lang } = Astro.props;
 
         // Escape closes and returns focus to the trigger.
         details.addEventListener("keydown", (event) => {
-            if ((event as KeyboardEvent).key === "Escape" && isOpen && !isAnimating) {
+            if (
+                (event as KeyboardEvent).key === "Escape" &&
+                isOpen &&
+                !isAnimating
+            ) {
                 isOpen = false;
                 announce(false);
                 animateMenu(false);
