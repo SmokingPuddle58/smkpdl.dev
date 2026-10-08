@@ -5,10 +5,7 @@ import { ThemeIcon } from "./ThemeIcon.astro";
 const { id, lang } = Astro.props;
 ---
 
-<div
-    class="sticky top-5 z-5000 flex flex-col items-center px-4 gap-2 relative"
-    id={id}
->
+<div class="sticky top-5 z-5000 flex flex-col items-center px-4 gap-2" id={id}>
     <div class="flex justify-center w-full">
         <div
             class="shadow-md border-2 border-gray-200 w-[80%] lg:max-w-[29%] bg-white rounded-lg h-15 flex items-center justify-center mr-3 whitespace-nowrap"
@@ -32,15 +29,6 @@ const { id, lang } = Astro.props;
             </div>
         </div>
 
-        {
-            /*
-            <details>/<summary> is the no-JS fallback widget.
-            The panel is absolutely positioned relative to the outer
-            (now `relative`) sticky container, so its width tracks the
-            flex row above rather than being constrained to the 20%
-            details element.
-        */
-        }
         <details id="menu-details" class="w-[20%] lg:max-w-[5%]">
             <summary
                 id="menu-toggle"
@@ -66,19 +54,9 @@ const { id, lang } = Astro.props;
                 </div>
             </summary>
 
-            {
-                /*
-                Width formula:
-                  flex row width        = 100% - 2rem  (sticky px-4)
-                  bar + toggle on lg    = 34% of that + 0.75rem (mr-3)
-                So the panel's lg cap = (100% - 2rem) * 0.34 + 0.75rem
-                On small screens left-4 / right-4 already equals the
-                flex row width, so no extra rule is needed.
-            */
-            }
             <div
                 id="ext-menu"
-                class="absolute left-4 right-4 mx-auto top-[4.25rem] border-2 border-gray-200 bg-white rounded-lg overflow-hidden shadow-md lg:max-w-[calc((100%-2rem)*0.34+0.75rem)]"
+                class="absolute left-4 right-4 mx-auto top-17 border-2 border-gray-200 bg-white rounded-lg overflow-hidden shadow-md lg:max-w-[calc((100%-2rem)*0.34+0.75rem)]"
             >
                 <div
                     class="h-15 flex items-center justify-center whitespace-nowrap"
@@ -159,38 +137,8 @@ const { id, lang } = Astro.props;
     </div>
 </div>
 
-{
-    /*
-    No-JS animation.
-    `html.js` is added by the script below; while it is absent (JS
-    disabled or failed to load), these rules drive the open animation
-    on the panel. Once JS boots, the class is added and the rules are
-    inert, so the GSAP timeline takes over.
-*/
-}
-{
-    /*
-    No-JS animation.
-    `html.js` is added by the script below; while it is absent (JS
-    disabled or failed to load), these rules drive the open/close
-    animation on the panel. Once JS boots, the class is added and the
-    rules are inert, so the GSAP timeline takes over.
-
-    Close animation is best-effort: the browser may hide the content
-    before the transition finishes. Modern browsers that support
-    transition-behavior: allow-discrete / content-visibility fare better.
-*/
-}
 <style is:global>
     @media (prefers-reduced-motion: no-preference) {
-        /*
-         * A closed <details> normally stops rendering its non-summary content
-         * via `content-visibility: hidden` on ::details-content. That happens
-         * the same frame `[open]` is removed, so there is nothing left to
-         * animate. Overriding it to `visible` keeps the panel in the render
-         * tree while closed; because the panel is absolutely positioned it
-         * contributes nothing to layout, so this is safe.
-         */
         html:not(.js) #menu-details::details-content {
             content-visibility: visible;
         }
@@ -218,8 +166,6 @@ const { id, lang } = Astro.props;
 <script>
     import { gsap } from "gsap";
 
-    // Mark that JS is running. The <style is:global> block above uses
-    // this to stay out of the way of the GSAP-driven animation.
     document.documentElement.classList.add("js");
 
     const details = document.getElementById(
@@ -277,7 +223,6 @@ const { id, lang } = Astro.props;
             }
         };
 
-        // Intercept the native toggle (mouse AND Enter/Space on <summary>).
         summary.addEventListener("click", (event) => {
             event.preventDefault();
             if (isAnimating) return;
@@ -287,7 +232,6 @@ const { id, lang } = Astro.props;
             animateMenu(isOpen);
         });
 
-        // Escape closes and returns focus to the trigger.
         details.addEventListener("keydown", (event) => {
             if (
                 (event as KeyboardEvent).key === "Escape" &&
