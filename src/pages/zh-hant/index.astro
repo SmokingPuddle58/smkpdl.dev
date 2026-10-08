@@ -100,6 +100,92 @@ import avatar from "../../assets/author_images/avatar.webp";
     if (titleElement && descriptionElement) {
         titleElement.textContent = "資訊";
         descriptionElement.textContent =
+            "請點擊、拖動或聚焦正方形圖形以查看更多資訊。";
+    }
+
+    function updateInfoPanel(cardId: string) {
+        const card = card_info.find((item) => item.id === cardId);
+        if (card && titleElement && descriptionElement) {
+            titleElement.textContent = card.title_zh;
+            descriptionElement.textContent = card.description_zh;
+            descriptionElement.setAttribute("aria-live", "polite");
+        }
+    }
+
+    for (const elem of ids) {
+        const element = document.getElementById(elem);
+        if (!element) continue;
+
+        const card = card_info.find((item) => item.id === elem);
+        if (card) {
+            element.setAttribute(
+                "aria-label",
+                `View details for ${card.title_zh}. Draggable element.`,
+            );
+        }
+
+        Draggable.create(`#${elem}`, {
+            type: "x,y",
+            bounds: ".container",
+            inertia: true,
+            dragClickables: true,
+            onClick: function () {
+                updateInfoPanel(this.target.id);
+            },
+            onDrag: function () {
+                updateInfoPanel(this.target.id);
+            },
+        });
+
+        element.addEventListener("keydown", (event) => {
+            if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                updateInfoPanel(elem);
+                element.focus();
+            }
+        });
+    }
+
+    const button = document.querySelector("#restore");
+    if (button) {
+        button.addEventListener("click", () => {
+            for (const elem of ids) {
+                const element = document.getElementById(elem);
+                if (element) {
+                    gsap.to(element, {
+                        x: 0,
+                        y: 0,
+                        duration: 0.5,
+                        ease: "power2.out",
+                    });
+                }
+            }
+            if (titleElement && descriptionElement) {
+                titleElement.textContent = "資訊";
+                descriptionElement.textContent =
+                    "請點擊、拖動或聚焦正方形圖形以查看更多資訊。";
+                descriptionElement.removeAttribute("aria-live");
+            }
+        });
+    }
+</script>
+
+
+<!-- <script>
+    import { gsap } from "gsap";
+    import { Draggable } from "gsap/Draggable";
+    import { InertiaPlugin } from "gsap/InertiaPlugin";
+    import card_info from "../../data/card_info.json";
+
+    gsap.registerPlugin(Draggable, InertiaPlugin);
+
+    const ids = card_info.map((item) => item.id);
+
+    const titleElement = document.getElementById("title");
+    const descriptionElement = document.getElementById("description");
+    if (titleElement && descriptionElement) {
+        titleElement.textContent = "資訊";
+        descriptionElement.textContent =
             "請點擊或拖動正方形圖形以查看更多資訊。";
     }
 
@@ -161,4 +247,4 @@ import avatar from "../../assets/author_images/avatar.webp";
                 "請點擊或拖動正方形圖形以查看更多資訊。";
         }
     });
-</script>
+</script> -->

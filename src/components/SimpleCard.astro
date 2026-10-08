@@ -3,6 +3,6 @@ import "../styles/global.css";
 const { img,rotate, Class, Id } = Astro.props;
 ---
 
-<div class={`rounded-lg border-2 border-gray-200 p-2 w-20 h-20 ${Class} bg-white`} style={`transform: rotate(${rotate}deg);`} id={Id}>
+<button class={`rounded-lg border-2 border-gray-200 p-2 w-20 h-20 ${Class} bg-white`} style={`transform: rotate(${rotate}deg);`} id={Id}>
     <img src={img} alt="Card" />
-</div>
+</button>
