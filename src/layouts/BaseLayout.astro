@@ -3,10 +3,7 @@ import TopBar from "../components/TopBar.astro";
 import BottomBar from "../components/BottomBar.astro";
 import "../styles/global.css";
 import "@fontsource/huninn";
-
-import { getLangFromUrl } from "../i18n/utils";
-
-const lang = getLangFromUrl(Astro.url);
+const lang = Astro.currentLocale;
 ---
 
 <html>
@@ -16,15 +13,29 @@ const lang = getLangFromUrl(Astro.url);
             content="width=device-width, initial-scale=1.0"
             charset="utf-8"
         />
-        <style>
-            body {
-                background: #f9f8f8;
-                font-family: "Huninn";
+        <script is:inline>
+            const theme = (() => {
+                const localStorageTheme = localStorage?.getItem("theme") ?? "";
+                if (["dark", "light"].includes(localStorageTheme)) {
+                    return localStorageTheme;
+                }
+                if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                    return "dark";
+                }
+                return "light";
+            })();
+
+            if (theme === "light") {
+                document.documentElement.classList.remove("dark");
+            } else {
+                document.documentElement.classList.add("dark");
             }
-        </style>
+
+            window.localStorage.setItem("theme", theme);
+        </script>
     </head>
-    <body class="bg-[#F9F8F8]">
-        <div id="smooth-wrapper" class="bg-[#F9F8F8] mb-10">
+    <body class="bg-[#F9F8F8] font-[Huninn] dark:bg-gray-800">
+        <div id="smooth-wrapper" class="mb-10">
             <TopBar id="topbar" lang={lang} />
             <div id="smooth-content" class="mt-5">
                 <div class="flex">
@@ -47,29 +58,30 @@ const lang = getLangFromUrl(Astro.url);
 
     gsap.registerPlugin(Draggable, ScrollTrigger);
 
-    const showHeader = gsap.quickTo("#topbar", "y", {
-        duration: 0.3,
-        ease: "power2.out",
-    });
+        const showHeader = gsap.quickTo("#topbar", "y", {
+            duration: 0.3,
+            ease: "power2.out",
+        });
 
-    const toggleBtn = document.getElementById("menu-toggle");
-    toggleBtn?.addEventListener("click", () => {
-        showHeader(0);
-    });
+        const toggleBtn = document.getElementById("menu-toggle");
+        toggleBtn?.addEventListener("click", () => {
+            showHeader(0);
+        });
 
-    ScrollTrigger.create({
-        trigger: "#smooth-wrapper",
-        start: "300 top",
-        onUpdate: (self) => {
-            const toggle = document.getElementById("menu-toggle");
-            const menuOpen = toggle?.getAttribute("aria-expanded") === "true";
-            if (menuOpen) return;
+        ScrollTrigger.create({
+            trigger: "#smooth-wrapper",
+            start: "300 top",
+            onUpdate: (self) => {
+                const toggle = document.getElementById("menu-toggle");
+                const menuOpen =
+                    toggle?.getAttribute("aria-expanded") === "true";
+                if (menuOpen) return;
 
-            if (self.direction === 1) {
-                showHeader(-100);
-            } else if (self.direction === -1) {
-                showHeader(0);
-            }
-        },
-    });
+                if (self.direction === 1) {
+                    showHeader(-100);
+                } else if (self.direction === -1) {
+                    showHeader(0);
+                }
+            },
+        });
 </script>

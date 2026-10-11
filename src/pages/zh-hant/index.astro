@@ -10,7 +10,7 @@ import avatar from "../../assets/author_images/avatar.webp";
 <BaseLayout>
     <div class="flex flex-col items-center w-full">
         <div
-            class="flex items-center justify-center gap-1 flex-wrap lg:text-xl md:text-lg w-full text-center"
+            class="flex items-center justify-center gap-1 flex-wrap lg:text-xl md:text-lg w-full text-center dark:text-gray-100"
         >
             Hi！ 我是
             <Image
@@ -33,13 +33,10 @@ import avatar from "../../assets/author_images/avatar.webp";
             }
         </div>
         <div
-            class="rounded-lg border-2 border-gray-200 p-5 w-full m-5 bg-white"
+            class="rounded-lg border-2 border-gray-200 p-5 w-full m-5 bg-white dark:bg-gray-500 dark:text-gray-100"
         >
-            <div class="text-2xl" id="title">資訊
-            </div>
-            <span id="description" class="lg:text-xl md:text-lg">
-                
-            </span>
+            <div class="text-2xl" id="title">資訊</div>
+            <span id="description" class="lg:text-xl md:text-lg"> </span>
             <noscript>
                 <p>
                     我是一隻貓，Coder，科大人及maimaiDX玩家。若想得到更佳的體驗，請考慮開啟JavaScript。:D
@@ -47,7 +44,7 @@ import avatar from "../../assets/author_images/avatar.webp";
             </noscript>
             <div>
                 <button
-                    class="bg-blue-500 w-20 mt-3 rounded-full text-white"
+                    class="bg-blue-500 w-20 mt-3 rounded-full text-white border-3 border-white"
                     id="restore"
                     >重設
                 </button>
@@ -86,165 +83,87 @@ import avatar from "../../assets/author_images/avatar.webp";
 </style>
 
 <script>
-    import { gsap } from "gsap";
-    import { Draggable } from "gsap/Draggable";
-    import { InertiaPlugin } from "gsap/InertiaPlugin";
-    import card_info from "../../data/card_info.json";
-
-    gsap.registerPlugin(Draggable, InertiaPlugin);
-
-    const ids = card_info.map((item) => item.id);
-
-    const titleElement = document.getElementById("title");
-    const descriptionElement = document.getElementById("description");
-    if (titleElement && descriptionElement) {
-        titleElement.textContent = "資訊";
-        descriptionElement.textContent =
-            "請點擊、拖動或聚焦正方形圖形以查看更多資訊。";
-    }
-
-    function updateInfoPanel(cardId: string) {
-        const card = card_info.find((item) => item.id === cardId);
-        if (card && titleElement && descriptionElement) {
-            titleElement.textContent = card.title_zh;
-            descriptionElement.textContent = card.description_zh;
-            descriptionElement.setAttribute("aria-live", "polite");
-        }
-    }
-
-    for (const elem of ids) {
-        const element = document.getElementById(elem);
-        if (!element) continue;
-
-        const card = card_info.find((item) => item.id === elem);
-        if (card) {
-            element.setAttribute(
-                "aria-label",
-                `View details for ${card.title_zh}. Draggable element.`,
-            );
-        }
-
-        Draggable.create(`#${elem}`, {
-            type: "x,y",
-            bounds: ".container",
-            inertia: true,
-            dragClickables: true,
-            onClick: function () {
-                updateInfoPanel(this.target.id);
-            },
-            onDrag: function () {
-                updateInfoPanel(this.target.id);
-            },
-        });
-
-        element.addEventListener("keydown", (event) => {
-            if (event.key === "Enter" || event.key === " ") {
-                event.preventDefault();
-                updateInfoPanel(elem);
-                element.focus();
-            }
-        });
-    }
-
-    const button = document.querySelector("#restore");
-    if (button) {
-        button.addEventListener("click", () => {
-            for (const elem of ids) {
-                const element = document.getElementById(elem);
-                if (element) {
-                    gsap.to(element, {
-                        x: 0,
-                        y: 0,
-                        duration: 0.5,
-                        ease: "power2.out",
-                    });
-                }
-            }
-            if (titleElement && descriptionElement) {
-                titleElement.textContent = "資訊";
-                descriptionElement.textContent =
-                    "請點擊、拖動或聚焦正方形圖形以查看更多資訊。";
-                descriptionElement.removeAttribute("aria-live");
-            }
-        });
-    }
-</script>
+        import { gsap } from "gsap";
+        import { Draggable } from "gsap/Draggable";
+        import { InertiaPlugin } from "gsap/InertiaPlugin";
+        import card_info from "../../data/card_info.json";
 
 
-<!-- <script>
-    import { gsap } from "gsap";
-    import { Draggable } from "gsap/Draggable";
-    import { InertiaPlugin } from "gsap/InertiaPlugin";
-    import card_info from "../../data/card_info.json";
+        gsap.registerPlugin(Draggable, InertiaPlugin);
 
-    gsap.registerPlugin(Draggable, InertiaPlugin);
+        const ids = card_info.map((item) => item.id);
 
-    const ids = card_info.map((item) => item.id);
-
-    const titleElement = document.getElementById("title");
-    const descriptionElement = document.getElementById("description");
-    if (titleElement && descriptionElement) {
-        titleElement.textContent = "資訊";
-        descriptionElement.textContent =
-            "請點擊或拖動正方形圖形以查看更多資訊。";
-    }
-
-    for (const elem of ids) {
-        Draggable.create(`#${elem}`, {
-            type: "x,y",
-            bounds: ".container",
-            inertia: true,
-            dragClickables: true,
-            onClick: function () {
-                const card = card_info.find(
-                    (item) => item.id === this.target.id,
-                );
-                if (card) {
-                    const titleElement = document.getElementById("title");
-                    const descriptionElement =
-                        document.getElementById("description");
-                    if (titleElement && descriptionElement) {
-                        titleElement.textContent = card.title_zh;
-                        descriptionElement.textContent = card.description_zh;
-                    }
-                }
-            },
-            onDrag: function () {
-                const card = card_info.find(
-                    (item) => item.id === this.target.id,
-                );
-                if (card) {
-                    const titleElement = document.getElementById("title");
-                    const descriptionElement =
-                        document.getElementById("description");
-                    if (titleElement && descriptionElement) {
-                        titleElement.textContent = card.title_zh;
-                        descriptionElement.textContent = card.description_zh;
-                    }
-                }
-            },
-        });
-    }
-
-    const button = document.querySelector("#restore");
-    button!.addEventListener("click", () => {
-        for (const elem of ids) {
-            const element = document.getElementById(elem);
-            if (element) {
-                gsap.to(element, {
-                    x: 0,
-                    y: 0,
-                    duration: 0.5,
-                    ease: "power2.out",
-                });
-            }
-        }
         const titleElement = document.getElementById("title");
         const descriptionElement = document.getElementById("description");
         if (titleElement && descriptionElement) {
             titleElement.textContent = "資訊";
             descriptionElement.textContent =
-                "請點擊或拖動正方形圖形以查看更多資訊。";
+                "請點擊、拖動或聚焦正方形圖形以查看更多資訊。";
         }
-    });
-</script> -->
+
+        function updateInfoPanel(cardId: string) {
+            const card = card_info.find((item) => item.id === cardId);
+            if (card && titleElement && descriptionElement) {
+                titleElement.textContent = card.title_zh;
+                descriptionElement.textContent = card.description_zh;
+                descriptionElement.setAttribute("aria-live", "polite");
+            }
+        }
+
+        for (const elem of ids) {
+            const element = document.getElementById(elem);
+            if (!element) continue;
+
+            const card = card_info.find((item) => item.id === elem);
+            if (card) {
+                element.setAttribute(
+                    "aria-label",
+                    `View details for ${card.title_zh}. Draggable element.`,
+                );
+            }
+
+            Draggable.create(`#${elem}`, {
+                type: "x,y",
+                bounds: ".container",
+                inertia: true,
+                dragClickables: true,
+                onClick: function () {
+                    updateInfoPanel(this.target.id);
+                },
+                onDrag: function () {
+                    updateInfoPanel(this.target.id);
+                },
+            });
+
+            element.addEventListener("keydown", (event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    updateInfoPanel(elem);
+                    element.focus();
+                }
+            });
+        }
+
+        const button = document.querySelector("#restore");
+        if (button) {
+            button.addEventListener("click", () => {
+                for (const elem of ids) {
+                    const element = document.getElementById(elem);
+                    if (element) {
+                        gsap.to(element, {
+                            x: 0,
+                            y: 0,
+                            duration: 0.5,
+                            ease: "power2.out",
+                        });
+                    }
+                }
+                if (titleElement && descriptionElement) {
+                    titleElement.textContent = "資訊";
+                    descriptionElement.textContent =
+                        "請點擊、拖動或聚焦正方形圖形以查看更多資訊。";
+                    descriptionElement.removeAttribute("aria-live");
+                }
+            });
+        }
+</script>

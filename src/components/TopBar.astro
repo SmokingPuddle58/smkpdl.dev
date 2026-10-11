@@ -1,14 +1,17 @@
 ---
 import nav from "../data/nav.json";
 import "../styles/global.css";
-import { ThemeIcon } from "./ThemeIcon.astro";
 const { id, lang } = Astro.props;
+import { getRelativeLocaleUrl } from "astro:i18n";
+import allLanguage from "../data/languages.json";
+import { ClientRouter } from "astro:transitions";
 ---
 
 <div class="sticky top-5 z-5000 flex flex-col items-center px-4 gap-2" id={id}>
     <div class="flex justify-center w-full">
         <div
-            class="shadow-md border-2 border-gray-200 w-[80%] lg:max-w-[29%] bg-white rounded-lg h-15 flex items-center justify-center mr-3 whitespace-nowrap"
+            class="shadow-md border-2 border-gray-200 w-[80%] lg:max-w-[29%] bg-white rounded-lg h-15 flex items-center justify-center mr-3 whitespace-nowrap
+                    dark:bg-gray-500 dark:text-gray-100 dark:border-gray-300"
         >
             <div class="flex justify-between w-full px-6">
                 {
@@ -16,11 +19,14 @@ const { id, lang } = Astro.props;
                         <div class="flex flex-row">
                             <div class="flex-row mr-2 hidden md:flex">
                                 <img
-                                    src={`../src/assets/icons/${item.icon}.svg`}
+                                    src={`../../src/assets/icons/${item.icon}.svg`}
                                     alt=""
                                 />
                             </div>
-                            <a class="flex" href={item.path}>
+                            <a
+                                class="flex"
+                                href={getRelativeLocaleUrl(lang, item.path)}
+                            >
                                 {item[`label_${lang}` as keyof typeof item]}
                             </a>
                         </div>
@@ -34,7 +40,7 @@ const { id, lang } = Astro.props;
                 id="menu-toggle"
                 aria-controls="ext-menu"
                 aria-label="Toggle menu"
-                class="shadow-md border-2 border-gray-200 w-full bg-white rounded-lg h-15 flex items-center justify-center cursor-pointer list-none [&::-webkit-details-marker]:hidden"
+                class="shadow-md border-2 border-gray-200 w-full bg-white rounded-lg h-15 flex items-center justify-center cursor-pointer list-none [&::-webkit-details-marker]:hidden dark:bg-gray-500 dark:text-gray-100 dark:border-gray-300"
             >
                 <div class="flex">
                     <svg
@@ -43,6 +49,7 @@ const { id, lang } = Astro.props;
                         height="1em"
                         viewBox="0 0 1024 1024"
                         id="burger-icon"
+                        class="dark:fill-gray-100"
                     >
                         <path d="M0 0h1024v1024H0z" fill="none"></path>
                         <path
@@ -56,22 +63,28 @@ const { id, lang } = Astro.props;
 
             <div
                 id="ext-menu"
-                class="absolute left-4 right-4 mx-auto top-17 border-2 border-gray-200 bg-white rounded-lg overflow-hidden shadow-md lg:max-w-[calc((100%-2rem)*0.34+0.75rem)]"
+                class="absolute left-4 right-4 mx-auto top-17 border-2 border-gray-200 bg-white dark:bg-gray-500 dark:text-gray-100 dark:border-gray-300 rounded-lg overflow-hidden shadow-md lg:max-w-[calc((100%-2rem)*0.34+0.75rem)]"
             >
                 <div
                     class="h-15 flex items-center justify-center whitespace-nowrap"
                 >
                     <div class="flex justify-between w-full px-6">
                         {
-                            nav.slice(0, 4).map((item) => (
+                            nav.slice(3, 8).map((item) => (
                                 <div class="flex flex-row">
                                     <div class="flex-row mr-2 hidden md:flex">
                                         <img
-                                            src={`../src/assets/icons/${item.icon}.svg`}
+                                            src={`../../src/assets/icons/${item.icon}.svg`}
                                             alt=""
                                         />
                                     </div>
-                                    <a class="flex" href={item.path}>
+                                    <a
+                                        class="flex"
+                                        href={getRelativeLocaleUrl(
+                                            lang,
+                                            item.path,
+                                        )}
+                                    >
                                         {
                                             item[
                                                 `label_${lang}` as keyof typeof item
@@ -87,14 +100,15 @@ const { id, lang } = Astro.props;
                 <div
                     class="h-15 flex items-center justify-center whitespace-nowrap"
                 >
-                    <div class="flex justify-between w-full px-6">
-                        <div class="flex flex-row">
-                            <div class="flex-row mr-2 hidden md:flex">
+                    <div class="flex justify-between w-full px-6 items-center">
+                        <div class="flex flex-row items-center">
+                            <div class="flex items-center">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="1em"
                                     height="1em"
                                     viewBox="0 0 512 512"
+                                    class="mr-2"
                                 >
                                     <path d="M0 0h512v512H0z" fill="none"
                                     ></path>
@@ -104,21 +118,35 @@ const { id, lang } = Astro.props;
                                     ></path>
                                 </svg>
                             </div>
-                            <span class="flex"> Language </span>
+                            {
+                                allLanguage.map((item) => (
+                                    <div class="h-15 flex items-center justify-center whitespace-nowrap mr-5">
+                                        <a
+                                            class="flex items-center"
+                                            href={getRelativeLocaleUrl(
+                                                item.lang_code,
+                                            )}
+                                        >
+                                            {item.lang_name}
+                                        </a>
+                                    </div>
+                                ))
+                            }
                         </div>
                     </div>
                 </div>
 
                 <div
-                    class="h-15 flex items-center justify-center whitespace-nowrap"
+                    class="h-15 hidden items-center justify-center whitespace-nowrap"
+                    id="theme-setting"
                 >
                     <div class="flex justify-between w-full px-6">
                         <div class="flex flex-row">
-                            <div class="flex-row mr-2 hidden md:flex">
+                            <div class="flex-row mr-2 flex items-center">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
-                                    width="1em"
-                                    height="1em"
+                                    width="20px"
+                                    height="20px"
                                     viewBox="0 0 20 20"
                                 >
                                     <path d="M0 0h20v20H0z" fill="none"></path>
@@ -128,7 +156,16 @@ const { id, lang } = Astro.props;
                                     ></path>
                                 </svg>
                             </div>
-                            <span class="flex"> Theme </span>
+                            <button
+                                class="flex mr-2 rounded-full w-5 h-5 bg-gray-700 border-2 border-gray-200 cursor-pointer"
+                                aria-label="Theme: Dark"
+                                onclick="document.documentElement.classList.add('dark'); localStorage.setItem('theme', 'dark')"
+                            ></button>
+                            <button
+                                class="flex mr-2 rounded-full w-5 h-5 bg-gray-200 border-2 border-black cursor-pointer"
+                                aria-label="Theme: Light"
+                                onclick="document.documentElement.classList.remove('dark'); localStorage.setItem('theme', 'light')"
+                            ></button>
                         </div>
                     </div>
                 </div>
@@ -143,7 +180,6 @@ const { id, lang } = Astro.props;
             content-visibility: visible;
         }
 
-        /* Closed state — we now own the hiding. */
         html:not(.js) #menu-details #ext-menu {
             opacity: 0;
             visibility: hidden;
@@ -154,7 +190,6 @@ const { id, lang } = Astro.props;
                 visibility 0.35s;
         }
 
-        /* Open state. */
         html:not(.js) #menu-details[open] #ext-menu {
             opacity: 1;
             visibility: visible;
@@ -165,86 +200,93 @@ const { id, lang } = Astro.props;
 
 <script>
     import { gsap } from "gsap";
+        const theme_setting = document.getElementById("theme-setting");
+        if (theme_setting) {
+            theme_setting.classList.remove("hidden");
+            theme_setting.classList.toggle("flex");
+        }
 
-    document.documentElement.classList.add("js");
+        document.documentElement.classList.add("js");
 
-    const details = document.getElementById(
-        "menu-details",
-    ) as HTMLDetailsElement | null;
-    const summary = document.getElementById(
-        "menu-toggle",
-    ) as HTMLElement | null;
-    const extMenu = document.getElementById("ext-menu") as HTMLElement | null;
+        const details = document.getElementById(
+            "menu-details",
+        ) as HTMLDetailsElement | null;
+        const summary = document.getElementById(
+            "menu-toggle",
+        ) as HTMLElement | null;
+        const extMenu = document.getElementById(
+            "ext-menu",
+        ) as HTMLElement | null;
 
-    if (details && summary && extMenu) {
-        let isOpen = details.hasAttribute("open");
-        let isAnimating = false;
+        if (details && summary && extMenu) {
+            let isOpen = details.hasAttribute("open");
+            let isAnimating = false;
 
-        const announce = (open: boolean) => {
-            summary.setAttribute("aria-expanded", String(open));
-            window.dispatchEvent(
-                new CustomEvent("menu-toggle", { detail: { open } }),
-            );
-        };
+            const announce = (open: boolean) => {
+                summary.setAttribute("aria-expanded", String(open));
+                window.dispatchEvent(
+                    new CustomEvent("menu-toggle", { detail: { open } }),
+                );
+            };
 
-        const animateMenu = (open: boolean) => {
-            isAnimating = true;
+            const animateMenu = (open: boolean) => {
+                isAnimating = true;
 
-            if (open) {
-                // Collapse before revealing to avoid a first-paint flash.
-                extMenu.style.height = "0px";
-                extMenu.style.opacity = "0";
-                details.open = true;
+                if (open) {
+                    extMenu.style.height = "0px";
+                    extMenu.style.opacity = "0";
+                    details.open = true;
 
-                gsap.to(extMenu, {
-                    height: extMenu.scrollHeight,
-                    opacity: 1,
-                    duration: 0.35,
-                    ease: "power3.out",
-                    onComplete: () => {
-                        extMenu.style.height = "";
-                        extMenu.style.opacity = "";
-                        isAnimating = false;
-                    },
-                });
-            } else {
-                gsap.to(extMenu, {
-                    height: 0,
-                    opacity: 0,
-                    duration: 0.35,
-                    ease: "power2.in",
-                    onComplete: () => {
-                        details.open = false;
-                        extMenu.style.height = "";
-                        extMenu.style.opacity = "";
-                        isAnimating = false;
-                    },
-                });
-            }
-        };
+                    gsap.to(extMenu, {
+                        height: extMenu.scrollHeight,
+                        opacity: 1,
+                        duration: 0.35,
+                        ease: "power3.out",
+                        onComplete: () => {
+                            extMenu.style.height = "";
+                            extMenu.style.opacity = "";
+                            isAnimating = false;
+                        },
+                    });
+                } else {
+                    gsap.to(extMenu, {
+                        height: 0,
+                        opacity: 0,
+                        duration: 0.35,
+                        ease: "power2.in",
+                        onComplete: () => {
+                            details.open = false;
+                            extMenu.style.height = "";
+                            extMenu.style.opacity = "";
+                            isAnimating = false;
+                        },
+                    });
+                }
+            };
 
-        summary.addEventListener("click", (event) => {
-            event.preventDefault();
-            if (isAnimating) return;
+            summary.addEventListener("click", (event) => {
+                event.preventDefault();
+                if (isAnimating) return;
 
-            isOpen = !isOpen;
-            announce(isOpen);
-            animateMenu(isOpen);
-        });
+                isOpen = !isOpen;
+                announce(isOpen);
+                animateMenu(isOpen);
+            });
 
-        details.addEventListener("keydown", (event) => {
-            if (
-                (event as KeyboardEvent).key === "Escape" &&
-                isOpen &&
-                !isAnimating
-            ) {
-                isOpen = false;
-                announce(false);
-                animateMenu(false);
-                summary.focus();
-            }
-        });
+            details.addEventListener("keydown", (event) => {
+                if (
+                    (event as KeyboardEvent).key === "Escape" &&
+                    isOpen &&
+                    !isAnimating
+                ) {
+                    isOpen = false;
+                    announce(false);
+                    animateMenu(false);
+                    summary.focus();
+                }
+            });
 
-        summary.setAttribute("aria-expanded", String(isOpen));
-    }
+            summary.setAttribute("aria-expanded", String(isOpen));
+        }
 </script>
+

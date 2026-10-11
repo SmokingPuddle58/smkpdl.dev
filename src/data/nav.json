@@ -21,10 +21,31 @@
         "icon": "mail"
     },
     {
+        "keys": "nav.friends",
+        "label_en": "Friends",
+        "label_zh-hant": "朋友",
+        "path": "/friends",
+        "icon": "human"
+    },
+    {
         "keys": "nav.webring",
         "label_en": "Webrings",
         "label_zh-hant": "Webrings",
         "path": "/webring",
-        "icon": "link"
+        "icon": "planet"
+    },
+    {
+        "keys": "nav.now",
+        "label_en": "Now",
+        "label_zh-hant": "Now",
+        "path": "/now",
+        "icon": "clock"
+    },
+    {
+        "keys": "nav.uses",
+        "label_en": "Uses",
+        "label_zh-hant": "Uses",
+        "path": "/uses",
+        "icon": "keyboard"
     }
 ]
