@@ -5,6 +5,16 @@ import IndexLinkCard from "../../components/IndexLinkCard.astro";
 import card_info from "../../data/card_info.json";
 import { Image } from "astro:assets";
 import avatar from "../../assets/author_images/avatar.webp";
+
+const drawingUrls = import.meta.glob("../../assets/simple_drawing/*.svg", {
+    eager: true,
+    query: "?url",
+    import: "default",
+}) as Record<string, string>;
+function getDrawingUrl(id: string) {
+    const key = `../../assets/simple_drawing/${id}.svg`;
+    return drawingUrls[key] ?? `/simple_drawing/${id}.svg`;
+}
 ---
 
 <BaseLayout>
@@ -28,7 +38,7 @@ import avatar from "../../assets/author_images/avatar.webp";
             {
                 card_info.map((card) => (
                     <SimpleCard
-                        img={"../src/assets/simple_drawing/" + card.id + ".svg"}
+                        img={getDrawingUrl(card.id)}
                         rotate={card.rotate}
                         Id={card.id}
                     />
