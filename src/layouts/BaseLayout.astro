@@ -34,7 +34,7 @@ const lang = Astro.currentLocale;
             window.localStorage.setItem("theme", theme);
         </script>
     </head>
-    <body class="bg-[#F9F8F8] font-[Huninn] dark:bg-gray-800">
+    <body class="bg-[#F9F8F8] font-[Huninn] dark:bg-gray-800 transition-colors">
         <div id="smooth-wrapper" class="mb-10">
             <TopBar id="topbar" lang={lang} />
             <div id="smooth-content" class="mt-5">
@@ -58,11 +58,23 @@ const lang = Astro.currentLocale;
 
     gsap.registerPlugin(Draggable, ScrollTrigger);
 
-        const showHeader = gsap.quickTo("#topbar", "y", {
-            duration: 0.3,
-            ease: "power2.out",
-        });
+    const applyTheme = () => {
+        const theme = localStorage.getItem("theme");
+        if (theme === "dark") {
+            document.documentElement.classList.add("dark");
+        } else if (theme === "light") {
+            document.documentElement.classList.remove("dark");
+        }
+    };
 
+    document.addEventListener("astro:after-swap", applyTheme);
+
+    const showHeader = gsap.quickTo("#topbar", "y", {
+        duration: 0.3,
+        ease: "power2.out",
+    });
+
+    document.addEventListener("astro:page-load", () => {
         const toggleBtn = document.getElementById("menu-toggle");
         toggleBtn?.addEventListener("click", () => {
             showHeader(0);
@@ -84,4 +96,5 @@ const lang = Astro.currentLocale;
                 }
             },
         });
+    });
 </script>

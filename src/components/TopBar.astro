@@ -11,7 +11,7 @@ import { ClientRouter } from "astro:transitions";
     <div class="flex justify-center w-full">
         <div
             class="shadow-md border-2 border-gray-200 w-[80%] lg:max-w-[29%] bg-white rounded-lg h-15 flex items-center justify-center mr-3 whitespace-nowrap
-                    dark:bg-gray-500 dark:text-gray-100 dark:border-gray-300"
+                    dark:bg-gray-500 dark:text-gray-100 dark:border-gray-300 transition-colors"
         >
             <div class="flex justify-between w-full px-6">
                 {
@@ -40,7 +40,7 @@ import { ClientRouter } from "astro:transitions";
                 id="menu-toggle"
                 aria-controls="ext-menu"
                 aria-label="Toggle menu"
-                class="shadow-md border-2 border-gray-200 w-full bg-white rounded-lg h-15 flex items-center justify-center cursor-pointer list-none [&::-webkit-details-marker]:hidden dark:bg-gray-500 dark:text-gray-100 dark:border-gray-300"
+                class="shadow-md border-2 border-gray-200 w-full bg-white rounded-lg h-15 flex items-center justify-center cursor-pointer list-none [&::-webkit-details-marker]:hidden dark:bg-gray-500 dark:text-gray-100 dark:border-gray-300 transition-colors"
             >
                 <div class="flex">
                     <svg
@@ -63,7 +63,7 @@ import { ClientRouter } from "astro:transitions";
 
             <div
                 id="ext-menu"
-                class="absolute left-4 right-4 mx-auto top-17 border-2 border-gray-200 bg-white dark:bg-gray-500 dark:text-gray-100 dark:border-gray-300 rounded-lg overflow-hidden shadow-md lg:max-w-[calc((100%-2rem)*0.34+0.75rem)]"
+                class="absolute left-4 right-4 mx-auto top-17 border-2 border-gray-200 bg-white dark:bg-gray-500 dark:text-gray-100 dark:border-gray-300 transition-colors rounded-lg overflow-hidden shadow-md lg:max-w-[calc((100%-2rem)*0.34+0.75rem)]"
             >
                 <div
                     class="h-15 flex items-center justify-center whitespace-nowrap"
@@ -200,6 +200,7 @@ import { ClientRouter } from "astro:transitions";
 
 <script>
     import { gsap } from "gsap";
+    document.addEventListener("astro:page-load", () => {
         const theme_setting = document.getElementById("theme-setting");
         if (theme_setting) {
             theme_setting.classList.remove("hidden");
@@ -288,5 +289,7 @@ import { ClientRouter } from "astro:transitions";
 
             summary.setAttribute("aria-expanded", String(isOpen));
         }
+    });
 </script>
 
+<ClientRouter />
