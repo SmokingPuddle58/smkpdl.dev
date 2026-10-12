@@ -5,9 +5,22 @@ const { id, lang } = Astro.props;
 import { getRelativeLocaleUrl } from "astro:i18n";
 import allLanguage from "../data/languages.json";
 import { ClientRouter } from "astro:transitions";
+const drawingUrls = import.meta.glob("../assets/icons/*.svg", {
+    eager: true,
+    query: "?url",
+    import: "default",
+}) as Record<string, string>;
+function getDrawingUrl(id: string) {
+    const key = `../assets/icons/${id}.svg`;
+    return drawingUrls[key] ?? `/icons/${id}.svg`;
+}
 ---
 
-<div class="sticky top-5 z-5000 flex flex-col items-center px-4 gap-2" id={id}>
+<div
+    class="sticky top-5 z-5000 flex flex-col items-center px-4 gap-2"
+    id={id}
+    transition:name="top-bar"
+>
     <div class="flex justify-center w-full">
         <div
             class="shadow-md border-2 border-gray-200 w-[80%] lg:max-w-[29%] bg-white rounded-lg h-15 flex items-center justify-center mr-3 whitespace-nowrap
@@ -18,10 +31,7 @@ import { ClientRouter } from "astro:transitions";
                     nav.slice(0, 3).map((item) => (
                         <div class="flex flex-row">
                             <div class="flex-row mr-2 hidden md:flex">
-                                <img
-                                    src={`../../src/assets/icons/${item.icon}.svg`}
-                                    alt=""
-                                />
+                                <img src={getDrawingUrl(item.icon)} alt="" />
                             </div>
                             <a
                                 class="flex"
@@ -74,7 +84,7 @@ import { ClientRouter } from "astro:transitions";
                                 <div class="flex flex-row">
                                     <div class="flex-row mr-2 hidden md:flex">
                                         <img
-                                            src={`../../src/assets/icons/${item.icon}.svg`}
+                                            src={getDrawingUrl(item.icon)}
                                             alt=""
                                         />
                                     </div>
