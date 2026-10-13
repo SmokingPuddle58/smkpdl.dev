@@ -24,14 +24,14 @@ function getDrawingUrl(id: string) {
     <div class="flex justify-center w-full">
         <div
             class="shadow-md border-2 border-gray-200 w-[80%] lg:max-w-[29%] bg-white rounded-lg h-15 flex items-center justify-center mr-3 whitespace-nowrap
-                    dark:bg-gray-500 dark:text-gray-100 dark:border-gray-300 transition-colors"
+                    dark:bg-slate-700 dark:text-gray-100 dark:border-gray-300 transition-colors"
         >
             <div class="flex justify-between w-full px-6">
                 {
                     nav.slice(0, 3).map((item) => (
                         <div class="flex flex-row">
                             <div class="flex-row mr-2 hidden md:flex">
-                                <img src={getDrawingUrl(item.icon)} alt="" />
+                                <img src={getDrawingUrl(item.icon)} alt="" class="dark:invert dark:brightness-200"/>
                             </div>
                             <a
                                 class="flex"
@@ -50,7 +50,7 @@ function getDrawingUrl(id: string) {
                 id="menu-toggle"
                 aria-controls="ext-menu"
                 aria-label="Toggle menu"
-                class="shadow-md border-2 border-gray-200 w-full bg-white rounded-lg h-15 flex items-center justify-center cursor-pointer list-none [&::-webkit-details-marker]:hidden dark:bg-gray-500 dark:text-gray-100 dark:border-gray-300 transition-colors"
+                class="shadow-md border-2 border-gray-200 w-full bg-white rounded-lg h-15 flex items-center justify-center cursor-pointer list-none [&::-webkit-details-marker]:hidden dark:bg-slate-700 dark:text-gray-100 dark:border-gray-300 transition-colors"
             >
                 <div class="flex">
                     <svg
@@ -73,7 +73,7 @@ function getDrawingUrl(id: string) {
 
             <div
                 id="ext-menu"
-                class="absolute left-4 right-4 mx-auto top-17 border-2 border-gray-200 bg-white dark:bg-gray-500 dark:text-gray-100 dark:border-gray-300 transition-colors rounded-lg overflow-hidden shadow-md lg:max-w-[calc((100%-2rem)*0.34+0.75rem)]"
+                class="absolute left-4 right-4 mx-auto top-17 border-2 border-gray-200 bg-white dark:bg-slate-700 dark:text-gray-100 dark:border-gray-300 transition-colors rounded-lg overflow-hidden shadow-md lg:max-w-[calc((100%-2rem)*0.34+0.75rem)]"
             >
                 <div
                     class="h-15 flex items-center justify-center whitespace-nowrap"
@@ -86,6 +86,7 @@ function getDrawingUrl(id: string) {
                                         <img
                                             src={getDrawingUrl(item.icon)}
                                             alt=""
+                                            class="dark:invert dark:brightness-200"
                                         />
                                     </div>
                                     <a
