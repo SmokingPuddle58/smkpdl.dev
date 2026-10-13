@@ -5,6 +5,7 @@ import IndexLinkCard from "../../components/IndexLinkCard.astro";
 import card_info from "../../data/card_info.json";
 import { Image } from "astro:assets";
 import avatar from "../../assets/author_images/avatar.webp";
+console.log((Astro.url.pathname))
 ---
 
 <BaseLayout>
@@ -27,8 +28,3 @@ import avatar from "../../assets/author_images/avatar.webp";
     </div>
 </BaseLayout>
 
-<style>
-    html {
-        font-family: var(--font-huninn);
-    }
-</style>

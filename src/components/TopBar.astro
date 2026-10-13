@@ -14,6 +14,12 @@ function getDrawingUrl(id: string) {
     const key = `../assets/icons/${id}.svg`;
     return drawingUrls[key] ?? `/icons/${id}.svg`;
 }
+
+const currentPath = Astro.url.pathname;
+const pathWithoutLocale =
+    currentPath
+        .replace(new RegExp(`^/${Astro.currentLocale}`), "")
+        .replace(/^\//, "") || "";
 ---
 
 <div
@@ -31,7 +37,11 @@ function getDrawingUrl(id: string) {
                     nav.slice(0, 3).map((item) => (
                         <div class="flex flex-row">
                             <div class="flex-row mr-2 hidden md:flex">
-                                <img src={getDrawingUrl(item.icon)} alt="" class="dark:invert dark:brightness-200"/>
+                                <img
+                                    src={getDrawingUrl(item.icon)}
+                                    alt=""
+                                    class="dark:invert dark:brightness-200"
+                                />
                             </div>
                             <a
                                 class="flex"
@@ -136,6 +146,7 @@ function getDrawingUrl(id: string) {
                                             class="flex items-center"
                                             href={getRelativeLocaleUrl(
                                                 item.lang_code,
+                                                pathWithoutLocale,
                                             )}
                                         >
                                             {item.lang_name}

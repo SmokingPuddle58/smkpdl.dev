@@ -18,7 +18,11 @@ export default defineConfig({
         locales: locales,
         defaultLocale: locales[0],
         routing: {
-            prefixDefaultLocale: true
-        }
+            prefixDefaultLocale: true,
+            fallbackType: "redirect"
+        },
+        fallback: {
+            "zh-hant": "en"
+        },
     }
 });
