@@ -20,10 +20,6 @@ export default defineConfig({
         defaultLocale: locales[0],
         routing: {
             prefixDefaultLocale: true,
-            fallbackType: "rewrite"
-        },
-        fallback: {
-            "zh-hant": "en"
-        },
+        }
     }
 });
