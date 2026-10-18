@@ -18,7 +18,7 @@
         "label_en": "About",
         "label_zh-hant": "關於我",
         "path": "/about",
-        "icon": "mail"
+        "icon": "friend"
     },
     {
         "keys": "nav.friends",

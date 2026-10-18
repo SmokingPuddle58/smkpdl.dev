@@ -9,3 +9,7 @@
 html, body {
     @apply transition-colors duration-300;
 }
+
+html {
+  scrollbar-gutter: stable;  
+}

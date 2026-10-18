@@ -6,7 +6,7 @@ const locales = allLanguages.map(item => item.lang_code)
 
 // https://astro.build/config
 export default defineConfig({
-    trailingSlash: "always",
+    trailingSlash: "never",
     vite: {
         plugins: [tailwindcss()],
     },

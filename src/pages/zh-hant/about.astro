@@ -5,7 +5,6 @@ import IndexLinkCard from "../../components/IndexLinkCard.astro";
 import card_info from "../../data/card_info.json";
 import { Image } from "astro:assets";
 import avatar from "../../assets/author_images/avatar.webp";
-console.log((Astro.url.pathname))
 ---
 
 <BaseLayout>
@@ -16,15 +15,15 @@ console.log((Astro.url.pathname))
         <div
             class="flex items-center justify-center gap-1 flex-wrap lg:text-xl md:text-lg w-full text-center dark:text-gray-100 transition-colors"
         >
-            Hi！ This is SmokingPuddle58。小弟是香港科技大學數學系的畢業生。
+            Hi！ This is
+            SmokingPuddle58。小弟是香港科技大學數學系的畢業生，亦是香港科技大學的小小職員。
         </div>
         <div class="mt-5 flex flex-horizontal gap-2 flex-wrap container"></div>
         <div
             class="rounded-lg border-2 border-gray-200 p-5 w-full m-5 bg-white dark:bg-slate-700 dark:text-gray-100 transition-colors"
         >
-            <span id="description" class="lg:text-xl md:text-lg"> </span>
+            <span id="description" class="lg:text-xl md:text-lg">聯絡</span>
             <div></div>
         </div>
     </div>
 </BaseLayout>
-
