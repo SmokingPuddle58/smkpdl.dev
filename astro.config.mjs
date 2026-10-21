@@ -1,11 +1,12 @@
 // @ts-check
 import tailwindcss from '@tailwindcss/vite';
-import { defineConfig, fontProviders, svgoOptimizer } from 'astro/config';
+import { defineConfig, fontProviders } from 'astro/config';
 import allLanguages from "./src/data/languages.json";
 const locales = allLanguages.map(item => item.lang_code)
 
 // https://astro.build/config
 export default defineConfig({
+    trailingSlash: "never",
     vite: {
         plugins: [tailwindcss()],
     },
@@ -19,6 +20,6 @@ export default defineConfig({
         defaultLocale: locales[0],
         routing: {
             prefixDefaultLocale: true,
-        },
+        }
     }
 });
