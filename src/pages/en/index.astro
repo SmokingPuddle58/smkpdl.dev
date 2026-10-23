@@ -112,7 +112,7 @@ function getDrawingUrl(id: string) {
 
     document.addEventListener("astro:page-load", () => {
         // Only run when the English home page is the current page
-        // if (!document.querySelector('[data-home-lang="en"]')) return;
+        if (!document.querySelector('[data-home-lang="en"]')) return;
 
         const ids = card_info.map((item) => item.id);
 
