@@ -111,7 +111,7 @@ function getDrawingUrl(id: string) {
 
     document.addEventListener("astro:page-load", () => {
         // Only run when the Chinese home page is the current page
-        if (!document.querySelector('[data-home-lang="zh"]')) return;
+        // if (!document.querySelector('[data-home-lang="zh"]')) return;
 
         const ids = card_info.map((item) => item.id);
 
