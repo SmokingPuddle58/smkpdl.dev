@@ -2,6 +2,8 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 ---
 
+<style></style>
+
 <BaseLayout>
     <div
         data-home-lang="zh-hant"
@@ -11,7 +13,20 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
             Hi! Welcome to the colophon page. In here, I want to put something
             on how this page is being made.
         </p>
-        <p class="lg:text-3xl md:text-2xl underline">Why a new version</p>
+        <p>
+            Since it might goes too detail, so you may want to read the "Basic
+            info (TLDR)" part only. For the remaining part, just treat it as a
+            mini story that I want to tell you.
+        </p>
+        <p class="text-3xl underline">Basic info? (TLDR)</p>
+        <p>
+            This page is made by astro.js, a static site framework that is
+            currently the best for making blogs. The currently used domain
+            smkpdl.dev is purchased from Spaceship, which provides a reasonable
+            price for domain name. The site is hosted on Netlify with their free
+            plan.
+        </p>
+        <p class="text-3xl underline">Why a new version?</p>
         <p>
             So actually, before this page, I have like, 3 different versions of
             my website. The 1st and 2nd version did not use any framework and is
@@ -37,7 +52,36 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
             build my favourite design, but also, a site that I would like to
             write things on.
         </p>
-        <p class="lg:text-3xl md:text-2xl underline">How you designed this</p>
-        So this website
+        <p class="text-3xl underline">How you design?</p>
+        <p>
+            It's a really long progress. With the effect of procastination, I
+            spend a lot of times designing the draft. I just simply draw them on
+            a notebook
+        </p>
+        <p class="text-3xl underline">Any features?</p>
+        <p>
+            In the beginning, I have decided to make my website no-javascript
+            friendly. In my opinion, a blog page should be a static page that do
+            not consume too much server resources, and there is actually no
+            reason for a blog page to be non-static. So even though astro.js
+            supports framework, I still decided not to put any. With my testing,
+            a non-javascript users can also have a similar experience as a
+            javascript-enabled user.
+        </p>
+        <p>
+            Moreover, this page tried its best to follow WCAG 2.2 Level AA
+            standards. Several features have been implemented to
+        </p>
+        <p class="text-3xl underline">Design?</p>
+        <p>
+            Font: For font I have been using Huninn. It is a open-sourced
+            rounded font that provides good experience for both Chinese and
+            English. Moreover, it has a great support over special characters
+            that are commonly used in Hong Kong, Macau and Taiwan.
+        </p>
+        <p>
+            Color Scheme: Two color schemes: Light and Dark, just like most
+            usual websites. 
+        </p>
     </div>
 </BaseLayout>
