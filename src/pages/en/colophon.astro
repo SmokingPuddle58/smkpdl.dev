@@ -5,6 +5,10 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 <style></style>
 
 <BaseLayout>
+        <div
+            class="shadow-md border-2 border-gray-200 bg-white rounded-lg h-15 flex items-center justify-center mr-3 whitespace-nowrap
+                    dark:bg-slate-700 dark:text-gray-100 dark:border-gray-300 transition-colors"
+        >本頁面設中文版。按<a class="underline decoration-wavy" href="/zh-hant/colophon">此</a>前往。</div>
     <div
         data-home-lang="zh-hant"
         class="flex flex-col gap-4 lg:text-lg md:text-md w-full text-left dark:text-gray-100 transition-colors mt-3"
@@ -56,7 +60,10 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         <p>
             It's a really long progress. With the effect of procastination, I
             spend a lot of times designing the draft. I just simply draw them on
-            a notebook
+            a notebook, step by step and then continuously design the page until
+            I get something I really like. After I started coding, most of the
+            things are designed on-the-fly, in which I just to plenty of
+            trial-and-errors and finalize the design.
         </p>
         <p class="text-3xl underline">Any features?</p>
         <p>
@@ -70,7 +77,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         </p>
         <p>
             Moreover, this page tried its best to follow WCAG 2.2 Level AA
-            standards. Several features have been implemented to
+            standards. Several features have been implemented to make the page
+            more accesible, including the color schemes and screen-reader
+            friendly texts.
         </p>
         <p class="text-3xl underline">Design?</p>
         <p>
@@ -84,5 +93,15 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
             usual websites. The colors are picked such that the contrast between
             text and background satisfies WCAG 2.2 Level AA requirements.
         </p>
+                        <p class="text-3xl underline">AI declaration</p>
+                <p>Not yet since the site is not completed</p>
+
+
+                <p class="text-3xl underline">To-dos?</p>
+                <p>Not yet since the site is not completed</p>
+
+        <p class="text-3xl underline">Changelogs?</p>
+                <p>Aug 2026: First commit made.</p>
+
     </div>
 </BaseLayout>
