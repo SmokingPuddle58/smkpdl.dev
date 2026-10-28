@@ -2,5 +2,115 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 ---
 
+<style></style>
+
 <BaseLayout>
+    <div
+        class="shadow-md border-2 border-gray-200 bg-white rounded-lg h-15 flex items-center justify-center mr-3 whitespace-nowrap
+                    dark:bg-slate-700 dark:text-gray-100 dark:border-gray-300 transition-colors"
+    >
+        English version available at <a
+            class="ml-1 underline decoration-wavy flex flex-row"
+            href="/en/colophon"
+            >here <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+            >
+                <path d="M0 0h24v24H0z" fill="none"></path>
+                <path
+                    fill="currentColor"
+                    d="M10.768 5.25h2.464c.813 0 1.469 0 2 .043c.546.045 1.026.14 1.47.366a3.75 3.75 0 0 1 1.64 1.639c.226.444.32.924.365 1.47c.043.531.043 1.187.043 2v2.464c0 .813 0 1.469-.043 2c-.045.546-.14 1.026-.366 1.47a3.75 3.75 0 0 1-1.639 1.64c-.444.226-.924.32-1.47.365c-.531.043-1.187.043-2 .043h-3.61c-2.005 0-3.01-2.424-1.592-3.841l4.41-4.409h-1.565a.75.75 0 0 1 0-1.5h3.375a.75.75 0 0 1 .75.75v3.375a.75.75 0 0 1-1.5 0v-1.564L9.091 15.97a.75.75 0 0 0 .53 1.28H13.2c.853 0 1.447 0 1.91-.038c.453-.038.714-.107.912-.207c.423-.216.767-.56.983-.983c.1-.198.17-.459.207-.913c.037-.462.038-1.056.038-1.909v-2.4c0-.852 0-1.447-.038-1.91c-.038-.453-.107-.714-.207-.911a2.25 2.25 0 0 0-.983-.984c-.198-.1-.459-.17-.913-.207c-.462-.037-1.056-.038-1.909-.038h-2.4c-.852 0-1.447 0-1.91.038c-.453.037-.714.107-.911.207a2.25 2.25 0 0 0-.984.984c-.1.197-.17.458-.207.912c-.037.462-.038 1.057-.038 1.909v2.7a.75.75 0 0 1-1.5 0v-2.732c0-.813 0-1.469.043-2c.045-.546.14-1.026.366-1.47a3.75 3.75 0 0 1 1.639-1.64c.444-.226.924-.32 1.47-.365c.531-.043 1.187-.043 2-.043"
+                ></path>
+            </svg>
+        </a>.
+    </div>
+    <div
+        data-home-lang="zh-hant"
+        class="flex flex-col gap-4 lg:text-lg md:text-md w-full text-left dark:text-gray-100 transition-colors mt-3"
+    >
+        <p>
+            Hi! 歡迎來到Colophon頁。於此小弟希望簡單談談我是如何製作這個網頁的。
+        </p>
+        <p>
+            小弟會談及很多細節，故你可以只讀基本資訊
+            (TLDR)一部份。餘下的就姑且當是我想和你講的故事吧。
+        </p>
+        <p class="text-3xl underline">基本資訊 (TLDR)</p>
+        <p>
+            本頁面以astro.js作為主要框架。astro.js為一個靜態網頁框架，且非常適合製作部落格。本頁之域名smkpdl.dev購自Spaceship，託管於Netlify的免費方案上。
+        </p>
+        <p class="text-3xl underline">為什麼製作這個版本?</p>
+        <p>
+            So actually, before this page, I have like, 3 different versions of
+            my website. The 1st and 2nd version did not use any framework and is
+            just a simple mix of HTML, CSS and JavaScript. However, A major
+            disadvantage is that I cannot write blogs in md format. This is a
+            bit tricky. Along that, old pages did not use any framework, and is
+            somehow a great disadvantage for finding jobs.
+        </p>
+        <p>
+            So we have the 3rd version of the page. It uses Astro.js as
+            framework, the same as the current version. However, I procastinated
+            a lot and did not put too much effort in maintaining that page due
+            to the stress of finding jobs. The page looks rather incompleted,
+            with no blog posts at all. With that website I totally lose
+            motivation in making blogs.
+        </p>
+        <p>
+            After I get a job, the idea of "completing" the website has arised.
+            This at least includes adding different languages and also making a
+            dark theme. Also, since the previous Astro.js version is developed
+            based on a template, hence I have lot more limitations in developing
+            to the way I love. So this is why I need a new version. Not only to
+            build my favourite design, but also, a site that I would like to
+            write things on.
+        </p>
+        <p class="text-3xl underline">How you design?</p>
+        <p>
+            It's a really long progress. With the effect of procastination, I
+            spend a lot of times designing the draft. I just simply draw them on
+            a notebook, step by step and then continuously design the page until
+            I get something I really like. After I started coding, most of the
+            things are designed on-the-fly, in which I just to plenty of
+            trial-and-errors and finalize the design.
+        </p>
+        <p class="text-3xl underline">Any features?</p>
+        <p>
+            In the beginning, I have decided to make my website no-javascript
+            friendly. In my opinion, a blog page should be a static page that do
+            not consume too much server resources, and there is actually no
+            reason for a blog page to be non-static. So even though astro.js
+            supports framework, I still decided not to put any. With my testing,
+            a non-javascript users can also have a similar experience as a
+            javascript-enabled user.
+        </p>
+        <p>
+            Moreover, this page tried its best to follow WCAG 2.2 Level AA
+            standards. Several features have been implemented to make the page
+            more accesible, including the color schemes and screen-reader
+            friendly texts.
+        </p>
+        <p class="text-3xl underline">Design?</p>
+        <p>
+            Font: For font I have been using Huninn. It is a open-sourced
+            rounded font that provides good experience for both Chinese and
+            English. Moreover, it has a great support over special characters
+            that are commonly used in Hong Kong, Macau and Taiwan.
+        </p>
+        <p>
+            Color Scheme: Two color schemes: Light and Dark, just like most
+            usual websites. The colors are picked such that the contrast between
+            text and background satisfies WCAG 2.2 Level AA requirements.
+        </p>
+        <p class="text-3xl underline">AI declaration</p>
+        <p>Not yet since the site is not completed</p>
+
+        <p class="text-3xl underline">To-dos?</p>
+        <p>Not yet since the site is not completed</p>
+
+        <p class="text-3xl underline">Changelogs?</p>
+        <p>Aug 2026: First commit made.</p>
+    </div>
 </BaseLayout>
