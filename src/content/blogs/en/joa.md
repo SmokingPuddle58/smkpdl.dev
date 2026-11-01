@@ -1,4 +1,5 @@
 ---
+slug: "joa"
 title: "JoA"
 description: ""
 pubDate: "2026-09-14T11:25:00"
