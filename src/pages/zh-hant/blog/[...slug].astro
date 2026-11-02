@@ -1,0 +1,10 @@
+---
+export async function getStaticPaths() {
+  return [
+    // { params: { /* required */ }, props: { /* optional */ } },
+    { params: { post: '1' } }, // [post] is the parameter
+    { params: { post: '2' } }, // must match the file name
+    // ...
+  ];
+}
+---
