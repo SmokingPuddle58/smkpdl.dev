@@ -3,7 +3,7 @@ const { title, rotation, description, link } = Astro.props;
 ---
 
 <a
-    class="grid grid-cols-[1fr_auto] rounded-lg border-2 border-gray-200 p-5 mb-2 mt-3 bg-white w-full dark:bg-slate-700 dark:text-gray-100 transition-colors"
+    class="grid grid-cols-[1fr_auto] rounded-lg border-2 border-gray-200 p-5 mb-2 mt-3 bg-white w-full dark:bg-slate-700 dark:text-gray-100 transition-colors shadow-md hover:shadow-2xs transition-shadow duration-175"
     style={`transform: rotate(${rotation}deg);`}
     href={link}
 >
