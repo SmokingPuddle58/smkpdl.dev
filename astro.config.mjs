@@ -7,19 +7,22 @@ const locales = allLanguages.map(item => item.lang_code)
 // https://astro.build/config
 export default defineConfig({
     trailingSlash: "never",
+
     vite: {
         plugins: [tailwindcss()],
     },
+
     fonts: [{
         provider: fontProviders.fontsource(),
         name: "Huninn",
         cssVariable: "--font-huninn",
     }],
+
     i18n: {
         locales: locales,
         defaultLocale: locales[0],
         routing: {
             prefixDefaultLocale: true,
         },
-    }
+    },
 });
