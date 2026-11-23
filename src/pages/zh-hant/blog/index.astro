@@ -9,13 +9,15 @@ import BlogCard from "../../../components/BlogCard.astro";
 <div class="group rounded-lg border-2 border-gray-200 p-5 w-full bg-white dark:bg-slate-700 dark:text-gray-100 transition-colors shadow-md mb-3">
   <label class="flex w-full items-center justify-between font-medium cursor-pointer select-none">
     <input type="checkbox" class="sr-only" />
-    <span>Menu</span>
-    <span class="transition-transform duration-300 group-has-[:checked]:rotate-180">▼</span>
+    <span class="text-xl">過濾</span>
+    <span class="transition-transform duration-300 group-has-checked:rotate-180">▼</span>
   </label>
 
-  <div class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-in-out group-has-[:checked]:grid-rows-[1fr]">
+  <div class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-in-out group-has-checked:grid-rows-[1fr]">
     <div class="overflow-hidden">
-        Hi
+        <div>分類</div>
+        <div>標籤</div>
+
     </div>
   </div>
 </div>
