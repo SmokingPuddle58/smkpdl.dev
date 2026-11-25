@@ -1,18 +1,22 @@
 ---
-const noImg = false
+const noImg = true;
 ---
 
 <div class="flex flex-col items-center w-full dark:text-gray-100 transition-colors text-left">
-    <div class="relative rounded-lg border-2 border-gray-200 w-full mt-3 bg-white dark:bg-slate-700 dark:text-gray-100 transition-colors shadow-md overflow-hidden">
-        <img
-            src="https://picsum.photos/id/1040/2500/400"
-            alt="Hero image"
-            class="w-full h-44 object-cover rounded-b-lg"
-        />
+    <div class="relative rounded-lg border-2 border-gray-200 w-full mt-3 bg-white dark:bg-slate-700 dark:text-gray-100 transition-colors shadow-md">
+        {!noImg && (
+            <img
+                src="https://picsum.photos/id/1040/2500/400"
+                alt="Hero image"
+                class="w-full h-44 object-cover rounded-t-md rounded-b-lg"
+            />
+        )}
 
-        <div class="flex flex-row p-5">
-            <div class="pr-10">
-                <div class="text-2xl flex flex-row items-center">
+        <div class="p-5">
+            <div class="w-full">
+                <div
+                    class={`text-2xl flex flex-row items-center ${noImg ? "pr-10" : ""}`}
+                >
                     <div class="w-2 h-4 bg-amber-400 mr-2 ml-1"></div>
                     <span>好掛住</span>
 
@@ -33,7 +37,6 @@ const noImg = false
                                 d="M3.71 21.71L9 16.42l2.29 2.29c.2.2.45.29.71.29s.51-.1.71-.29l2-2a.996.996 0 0 0 0-1.41l-.79-.79l3.59-3.59l.79.79c.39.39 1.02.39 1.41 0l2-2a.996.996 0 0 0 0-1.41l-6-6a.996.996 0 0 0-1.41 0l-2 2a.996.996 0 0 0 0 1.41l.79.79l-3.59 3.59l-.79-.79a.996.996 0 0 0-1.41 0l-2 2a.996.996 0 0 0 0 1.41L7.59 15L2.3 20.29l1.41 1.41Z"
                             />
                         </svg>
-
                         <span
                             role="tooltip"
                             class="pointer-events-none absolute bottom-full left-1/2 z-10 mb-2 -translate-x-1/2 whitespace-nowrap rounded-md bg-gray-900 px-2.5 py-1 text-xs font-medium text-white opacity-0 shadow-md transition-all duration-200 translate-y-1 group-hover/tooltip:opacity-100 group-hover/tooltip:translate-y-0 group-focus/tooltip:opacity-100 group-focus/tooltip:translate-y-0 dark:bg-slate-200 dark:text-slate-900"
@@ -119,13 +122,13 @@ const noImg = false
                     </span>
                 </div>
 
-                <div class="text-lg flex flex-row items-center">
+                <div class="text-lg flex flex-row items-center mt-1">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="1em"
                         height="1em"
                         viewBox="0 0 24 24"
-                        class="shrink mr-1"
+                        class="shrink-0 mr-1"
                     >
                         <path d="M0 0h24v24H0z" fill="none" />
                         <path
@@ -171,8 +174,7 @@ const noImg = false
                         />
                     </svg>
                     <span class="border-black-200 dark:border-gray-200 border-2 rounded-lg px-1">
-                        {" "}
-                        事例{" "}
+                        事例
                     </span>
 
                     <svg
@@ -189,16 +191,13 @@ const noImg = false
                         </g>
                     </svg>
                     <span class="border-2 rounded-lg px-1 whitespace-nowrap">
-                        {" "}
-                        簡介{" "}
+                        簡介
                     </span>
                     <span class="border-2 rounded-lg px-1 whitespace-nowrap">
-                        {" "}
-                        簡介{" "}
+                        簡介
                     </span>
                     <span class="border-2 rounded-lg px-1 whitespace-nowrap">
-                        {" "}
-                        簡介{" "}
+                        簡介
                     </span>
                 </div>
 
@@ -216,14 +215,13 @@ const noImg = false
                 >
                     <path d="M0 0h24v24H0z" fill="none" />
                     <path
-                        class=`stroke-white dark:stroke-black ${noImg? 'hidden': ''}`
+                        class={`stroke-white dark:stroke-black ${noImg ? "hidden" : ""}`}
                         fill="none"
                         stroke-linecap="round"
                         stroke-linejoin="round"
                         stroke-width="6"
                         d="M4 12h16m-7-7l7 7l-7 7"
                     />
-
                     <path
                         class="stroke-current"
                         fill="none"
